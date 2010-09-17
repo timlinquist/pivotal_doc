@@ -1,0 +1,11 @@
+- account: Chris Kraybill
+  current_velocity: 3
+  id: 42409
+  initial_velocity: 4
+  iteration_length: 3
+  last_activity_at: 2010-09-16T19:41:29+00:00
+  name: GTS
+  point_scale: "0,1,2,3"
+  use_https: false
+  velocity_scheme: Average of 3 iterations
+  week_start_day: Tuesday

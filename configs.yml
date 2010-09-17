@@ -1,8 +1,10 @@
 GTS:
   id: 42409
   members: 
-    - ['tim.linquist@g5searchmarketing.com', '7b9dd8181631273d309baa62667b4649']
-    - ['steve.burkett@g5searchmarketing.com']
-    - ['chris.kraybill@g5searchmarketing.com']
-    - ['maeve.revels@g5searchmarketing.com']
-    - ['rob.revels@g5searchmarketing.com']
+    - [
+        'tim.linquist@g5searchmarketing.com', 
+        'steve.burkett@g5searchmarketing.com', 
+        'chris.kraybill@g5searchmarketing.com', 
+        'maeve.revels@g5searchmarketing.com', 
+        'rob.revels@g5searchmarketing.com'
+      ]

@@ -1,0 +1,71 @@
+- accepted_at: 2010-08-30T16:14:23+00:00
+  attachments: []
+  created_at: 2010-08-05T18:09:40+00:00
+  current_state: accepted
+  description: Deploy core component of GTS to staging.
+  estimate: 2
+  id: 4586000
+  integration_id: 
+  jira_id: 
+  jira_url: 
+  labels: 
+  name: Create staging env for GTS
+  other_id: 
+  owned_by: Tim Linquist
+  project_id: 42409
+  requested_by: Tim Linquist
+  story_type: feature
+  url: http://www.pivotaltracker.com/story/show/4586000,
+
+- created_at: 2010-08-06T19:46:38+00:00
+  current_state: accepted
+  description: We're fighting to process the volume of data when new sites are heavily crawled.  We need to detect bots at the request level and not persist any data for those requests.
+  estimate: 1
+  id: 4603104
+  integration_id: 
+  jira_id: 
+  jira_url: 
+  labels: 
+  name: Eliminate Bot traffic
+  other_id: 
+  owned_by: Tim Linquist
+  project_id: 42409
+  requested_by: Tim Linquist
+  story_type: feature
+  url: http://www.pivotaltracker.com/story/show/4603104
+
+
+- created_at: 2010-08-06T19:46:38+00:00
+  current_state: accepted
+  description: We need to provision a secondary utility slice to deploy Mongo to
+  estimate: 2
+  id: 4603105
+  integration_id: 
+  jira_id: 
+  jira_url: 
+  labels: 
+  name: GTS Utility Slice
+  other_id: 
+  owned_by: Tim Linquist
+  project_id: 42409
+  requested_by: Tim Linquist
+  story_type: chore
+  url: http://www.pivotaltracker.com/story/show/4603105
+
+- created_at: 2010-08-06T19:46:38+00:00
+  current_state: accepted
+  description: The bot detector is not filtering any bots
+  estimate: 2
+  id: 4603106
+  integration_id: 
+  jira_id: 
+  jira_url: 
+  labels: 
+  name: Bot Detector not Filtering
+  other_id: 
+  owned_by: Tim Linquist
+  project_id: 42409
+  requested_by: Tim Linquist
+  story_type: bug
+  url: http://www.pivotaltracker.com/story/show/4603106
+    
