@@ -1,10 +1,11 @@
-GTS:
-  id: 42409
-  members: 
-    - [
-        'tim.linquist@g5searchmarketing.com', 
-        'steve.burkett@g5searchmarketing.com', 
-        'chris.kraybill@g5searchmarketing.com', 
-        'maeve.revels@g5searchmarketing.com', 
-        'rob.revels@g5searchmarketing.com'
-      ]
+projects:
+  gts:
+    id: 42409
+    members: 
+      - [
+          'tim.linquist@g5searchmarketing.com', 
+          'steve.burkett@g5searchmarketing.com', 
+          'chris.kraybill@g5searchmarketing.com', 
+          'maeve.revels@g5searchmarketing.com', 
+          'rob.revels@g5searchmarketing.com'
+        ]

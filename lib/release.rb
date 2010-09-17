@@ -1,6 +1,10 @@
 class Release
   attr_accessor :project, :iteration
   
+  def initialize(iteration=nil)
+    @iteration= iteration
+  end
+  
   def latest_iteration
     PivotalTracker::Iteration.done(@project, :offset=>'-1')
   end  
