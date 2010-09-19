@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Release do
+describe PivotalDoc::Release do
   before(:each) do
     @project= PivotalTracker::Project.new
     @latest_iteration= PivotalTracker::Iteration.new
-    @release= Release.new
+    @release= PivotalDoc::Release.new
   end
 
   it "should get the last 'done' iteration for the project" do

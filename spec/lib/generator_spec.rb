@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Generator do
+describe PivotalDoc::Generator do
   before(:each) do
     pending
   end
