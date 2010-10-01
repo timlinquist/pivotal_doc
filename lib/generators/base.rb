@@ -6,8 +6,16 @@ module PivotalDoc
         @items= items
       end
       
-      def render_notes
-        raise 'Not Implemented (render_notes)!'
+      def render_doc
+        Haml::Engine.new(template, :local_assigns => {:items => @items})
+      end
+      
+      def template
+        @template ||= File.read(File.join(File.dirname(__FILE__), '/../../templates/', template_name))
+      end
+      
+      def template_name
+        raise 'Not Implemented!'
       end
     end
   end

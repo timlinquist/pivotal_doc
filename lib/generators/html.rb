@@ -1,9 +1,8 @@
-# Haml::Engine.new(File.read('index.haml', :local_assigns  => {:foo => foo})
 module PivotalDoc
   module Generators
-    class HTML < Base
-      def render_notes
-        
+    class HTML < Base      
+      def template_name
+        'html.haml'
       end
     end
   end

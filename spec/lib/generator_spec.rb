@@ -5,7 +5,7 @@ describe PivotalDoc::Generator do
     PivotalDoc::Generator.generators.each do |g| 
       generator= mock(g.to_s)
       g.stub!(:new).and_return(generator)
-      generator.stub!(:render_notes)
+      generator.stub!(:render_doc)
     end
   end
   
