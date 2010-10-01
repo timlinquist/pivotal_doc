@@ -4,7 +4,7 @@ describe PivotalDoc::Release do
   before(:each) do
     @project= PivotalTracker::Project.new
     @latest_iteration= PivotalTracker::Iteration.new
-    PivotalTracker::Iteration.stub!(:done).and_return(@latest_iteration)
+    PivotalTracker::Iteration.stub!(:done).and_return([@latest_iteration])
     @release= PivotalDoc::Release.new(@project)
   end
 
@@ -26,7 +26,7 @@ describe PivotalDoc::Release do
     end
     
     it "should default the iteration to the latest_iteration (last 'done') if one isn't specified" do
-      PivotalTracker::Iteration.should_receive(:done).and_return(@latest_iteration)
+      PivotalTracker::Iteration.should_receive(:done).and_return([@latest_iteration])
       release= PivotalDoc::Release.new(@project)
       release.iteration.should eql(@latest_iteration)
     end

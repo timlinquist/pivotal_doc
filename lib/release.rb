@@ -9,7 +9,7 @@ module PivotalDoc
     end
   
     def latest_iteration
-      PivotalTracker::Iteration.done(@project, :offset=>'-1')
+      PivotalTracker::Iteration.done(@project, :offset=>'-1').first
     end  
 
     def stories
