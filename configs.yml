@@ -4,11 +4,3 @@ token: 8c508bbb1d4cb60f8fcfdf8731902614
 projects: 
   gts:
     id: 42409
-    members: 
-      - [
-          'tim.linquist@g5searchmarketing.com', 
-          'steve.burkett@g5searchmarketing.com', 
-          'chris.kraybill@g5searchmarketing.com', 
-          'maeve.revels@g5searchmarketing.com', 
-          'rob.revels@g5searchmarketing.com'
-        ]

@@ -38,6 +38,8 @@ describe PivotalDoc::Configuration do
 
   describe "A Project" do
     before(:each) do
+      PivotalDoc::Configuration.configs=nil
+      PivotalDoc::Configuration.stub!(:filepath).and_return(File.join(File.dirname(__FILE__), '/../fixtures/', 'configs.yml'))
       @projects= PivotalDoc::Configuration.projects
       @project= @projects.fetch(@projects.keys.first)
     end

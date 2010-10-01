@@ -5,7 +5,11 @@ module PivotalDoc
     class << self
       def generate(format= :html)
         Configuration.authenticate!
-        items= collect_items
+        generators[format].new(collect_items).render_notes
+      end
+    
+      def generators
+        { :text=>Generators::Text, :html=>Generators::HTML }
       end
     
       def collect_items
