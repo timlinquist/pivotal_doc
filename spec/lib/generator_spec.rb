@@ -48,6 +48,9 @@ describe PivotalDoc::Generator do
         PivotalDoc::Generators::HTML.should_receive(:new).with(@items).and_return(@html_gen)
         PivotalDoc::Generator.generate(:html)
       end
+      it "should raise an error if the specified format isn't supported" do
+        lambda{ PivotalDoc::Generator.generate(:unsupported) }.should raise_error(PivotalDoc::FormatNotSupported)        
+      end
     end
   end
 end

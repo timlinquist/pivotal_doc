@@ -5,6 +5,7 @@ module PivotalDoc
     class << self
       def generate(format= :html)
         Configuration.authenticate!
+        raise FormatNotSupported.new(format) unless generators.has_key?(format)
         generators[format].new(collect_items).render_notes
       end
     
