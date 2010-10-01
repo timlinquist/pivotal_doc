@@ -1,12 +1,20 @@
 module PivotalDoc
   class Configuration
     class << self
+      attr_accessor :configs
+      attr_reader :authenticated
+      alias :authenticated? :authenticated
+
       def filepath
         File.join(File.dirname(__FILE__), '/../configs.yml')
       end
 
       def configs
-        @configs= YAML::load(File.new(filepath))
+        @configs ||= YAML::load(File.new(filepath))
+      end
+      
+      def projects
+        self.configs['projects']
       end
       
       def authenticate!
@@ -16,7 +24,7 @@ module PivotalDoc
       end
 
       private
-      def connection(&block)
+      def connection
         return @connection if @connection
         @connection= Connection.new
         @connection.token= configs['token']

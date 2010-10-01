@@ -4,7 +4,8 @@ describe PivotalDoc::Release do
   before(:each) do
     @project= PivotalTracker::Project.new
     @latest_iteration= PivotalTracker::Iteration.new
-    @release= PivotalDoc::Release.new
+    PivotalTracker::Iteration.stub!(:done).and_return(@latest_iteration)
+    @release= PivotalDoc::Release.new(@project)
   end
 
   it "should get the last 'done' iteration for the project" do
@@ -18,15 +19,16 @@ describe PivotalDoc::Release do
       @release.stub!(:latest_iteration).and_return(@latest_iteration)
     end
     
-    it "should default the iteration to the latest_iteration" do
-      @release.should_receive(:latest_iteration).and_return(@latest_iteration)
-      @release.iteration.should eql(@latest_iteration)
+    it "should use the iteration if specified" do
+      backlog= mock_object('iterations')
+      release= PivotalDoc::Release.new(@project, backlog)
+      release.iteration.should eql(backlog)      
     end
-
-    it "should use the iteration if set" do
-      @release.iteration= mock('PivotalTracker::Iteration')
-      @release.should_not_receive(:latest_iteration)
-      @release.iteration
+    
+    it "should default the iteration to the latest_iteration (last 'done') if one isn't specified" do
+      PivotalTracker::Iteration.should_receive(:done).and_return(@latest_iteration)
+      release= PivotalDoc::Release.new(@project)
+      release.iteration.should eql(@latest_iteration)
     end
 
     describe "latest" do

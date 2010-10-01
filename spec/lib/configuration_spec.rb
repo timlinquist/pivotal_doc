@@ -38,7 +38,7 @@ describe PivotalDoc::Configuration do
 
   describe "A Project" do
     before(:each) do
-      @projects= PivotalDoc::Configuration.configs['projects']
+      @projects= PivotalDoc::Configuration.projects
       @project= @projects.fetch(@projects.keys.first)
     end
     
@@ -73,7 +73,6 @@ describe PivotalDoc::Configuration do
     end
     
     it "should default to the config.yml settings" do
-      PivotalDoc::Configuration.stub!(:filepath).and_return(File.dirname(__FILE__) + '/../fixtures/configs.yml')
       %w(token username password).each do |_attr|
         PivotalDoc::Configuration.send(:connection).send(_attr.to_sym).should eql(PivotalDoc::Configuration.configs[_attr])  
       end
