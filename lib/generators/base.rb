@@ -1,4 +1,3 @@
-# Haml::Engine.new(File.read('index.haml', :local_assigns  => {:foo => foo})
 module PivotalDoc
   module Generators
     class Base
@@ -7,7 +6,15 @@ module PivotalDoc
       end
       
       def render_doc
-        Haml::Engine.new(template, :local_assigns => {:items => @items})
+        begin
+          f= File.open('/Users/tim/Desktop/demo.html', 'w+')
+          html= Haml::Engine.new(template).render(Object.new, {:items => @items})
+          f.puts(html)
+        rescue Exception=>e
+          puts e.message
+        ensure
+          f.close
+        end
       end
       
       def template
