@@ -49,9 +49,17 @@ describe PivotalDoc::Generators::Base do
     end
     
     it "should open the output file and write the compiled haml (html)" do
-      
+      Haml::Engine.stub!(:new).and_return(@engine)
+      @engine.stub!(:render).and_return('compiled haml')
+      @base.render_doc
+      File.read(@base.output_file).should eql('compiled haml')
     end
     
-    it "should handle any exceptions and output STDOUT" 
+    it "should handle any exceptions and output STDOUT" do
+      File.stub!(:open).and_raise(Exception.new('A MAJOR CATASTROPHE'))
+      $stdout.should_receive(:print).with('A MAJOR CATASTROPHE')
+      $stdout.should_receive(:flush)
+      @base.render_doc
+    end
   end
 end

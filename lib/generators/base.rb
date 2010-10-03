@@ -22,11 +22,12 @@ module PivotalDoc
         begin
           f= File.open(self.output_file, 'w+')
           html= Haml::Engine.new(template).render(Object.new, {:items => @items})
-          f.puts(html)
+          f.write(html)
         rescue Exception=>e
-          puts e.message
+          $stdout.print(e.message)
+          $stdout.flush
         ensure
-          f.close
+          f.close if f
         end
       end
       
