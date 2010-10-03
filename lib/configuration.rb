@@ -19,7 +19,7 @@ module PivotalDoc
       
       def authenticate!
         return if @authenticated
-        connection.token ? PivotalTracker::Client.token= connection.token : PivotalTracker::Client.token(connection.username, connection.password)
+        PivotalTracker::Client.token(connection.username, connection.password)
         @authenticated= true
       end
 

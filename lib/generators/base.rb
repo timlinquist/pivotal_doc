@@ -1,13 +1,26 @@
 module PivotalDoc
   module Generators
     class Base
-      def initialize(items)
+      def initialize(items, options={})
         @items= items
+        @options= options
+      end
+      
+      def output_path
+        @options[:output_path] || absolute_path
+      end
+      
+      def output_file
+        File.join(output_path, (@options[:output_file] || self.object_id.to_s) + output_ext)  
+      end
+      
+      def absolute_path
+        File.dirname(__FILE__)
       end
       
       def render_doc
         begin
-          f= File.open('/Users/tim/Desktop/demo.html', 'w+')
+          f= File.open(self.output_file, 'w+')
           html= Haml::Engine.new(template).render(Object.new, {:items => @items})
           f.puts(html)
         rescue Exception=>e
@@ -21,6 +34,7 @@ module PivotalDoc
         @template ||= File.read(File.join(File.dirname(__FILE__), '/../../templates/', template_name))
       end
       
+      def output_ext; '.default' end
       def template_name
         raise 'Not Implemented!'
       end

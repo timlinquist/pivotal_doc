@@ -1,8 +1,8 @@
 module PivotalDoc
   module Generators
     class Text < Base
-      def render_notes
-        
+      def template_name
+        'text.txt'
       end
     end
   end

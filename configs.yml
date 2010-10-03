@@ -1,6 +1,6 @@
-# username: g5search
-# password: 05351392a32a
-token: 8c508bbb1d4cb60f8fcfdf8731902614
+username: g5search
+password: 05351392a32a
+# token: 8c508bbb1d4cb60f8fcfdf8731902614
 projects: 
   gts:
     id: 42409

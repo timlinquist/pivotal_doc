@@ -18,11 +18,6 @@ describe PivotalDoc::Configuration do
       PivotalDoc::Configuration.instance_variable_set(:@authenticated, false)
     end
     
-    it "should set the token if it's configured" do
-      PivotalTracker::Client.should_receive(:token=).with(@connection.token)
-      PivotalDoc::Configuration.authenticate!
-    end
-    
     it "should set the token via the username & password if the token isn't configured" do
       @connection.token= nil
       PivotalTracker::Client.should_receive(:token).with(@connection.username, @connection.password)
@@ -30,7 +25,7 @@ describe PivotalDoc::Configuration do
     end
     
     it "should not set the token again if the client is already authenticated" do
-      PivotalTracker::Client.should_receive(:token=).exactly(:once)
+      PivotalTracker::Client.should_receive(:token).exactly(:once)
       PivotalDoc::Configuration.authenticate!
       PivotalDoc::Configuration.authenticate!
     end

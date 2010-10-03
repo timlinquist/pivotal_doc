@@ -3,10 +3,10 @@ module PivotalDoc
     attr_accessor :release
     
     class << self
-      def generate(format= :html)
+      def generate(format= :html, options={})
         Configuration.authenticate!
         raise FormatNotSupported.new(format) unless generators.has_key?(format)
-        generators[format].new(collect_items).render_doc
+        generators[format].new(collect_items, options).render_doc
       end
     
       def generators

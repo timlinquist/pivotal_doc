@@ -2,17 +2,17 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PivotalDoc::Generator do
   before(:each) do
-    PivotalDoc::Generator.generators.each do |g| 
+    PivotalDoc::Generator.generators.values.each do |g| 
       generator= mock(g.to_s)
       g.stub!(:new).and_return(generator)
       generator.stub!(:render_doc)
     end
   end
   
-  it "should connect to pivotal" do
+  it "should authenticate against pivotal before generating the release docs" do
     PivotalDoc::Generator.stub!(:collect_items).and_return({})
+    PivotalDoc::Configuration.should_receive(:authenticate!)
     PivotalDoc::Generator.generate
-    PivotalDoc::Configuration.authenticated?.should be_true
   end
 
   describe "generation" do
@@ -42,11 +42,13 @@ describe PivotalDoc::Generator do
     describe "Formattting" do
       before(:each) do
         PivotalDoc::Generator.stub!(:collect_items).and_return(@items)
+        @options={:my_custom_option=>'my custom value'}
         @html_gen= PivotalDoc::Generators::HTML.new({})
+        @html_gen.stub!(:render_doc)
       end
-      it "should render the items with the specified format" do
-        PivotalDoc::Generators::HTML.should_receive(:new).with(@items).and_return(@html_gen)
-        PivotalDoc::Generator.generate(:html)
+      it "should render the items with the specified format and custom options" do
+        PivotalDoc::Generators::HTML.should_receive(:new).with(@items, @options).and_return(@html_gen)
+        PivotalDoc::Generator.generate(:html, @options)
       end
       it "should raise an error if the specified format isn't supported" do
         lambda{ PivotalDoc::Generator.generate(:unsupported) }.should raise_error(PivotalDoc::FormatNotSupported)        
