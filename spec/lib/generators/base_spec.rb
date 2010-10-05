@@ -6,17 +6,10 @@ describe PivotalDoc::Generators::Base do
       @items= {:stories=>[],:chores=>[],:bugs=>[]}
       @base= PivotalDoc::Generators::Base.new(@items)
       @base.stub!(:template).and_return('index.txt')
-      @engine= Haml::Engine.new('')
     end
     
     after(:each) do
       File.delete(@base.output_file) if File.exists?(@base.output_file)
-    end
-    
-    it "should render the release doc" do
-      Haml::Engine.should_receive(:new).with(@base.template).and_return(@engine)
-      @engine.should_receive(:render)
-      @base.render_doc
     end
     
     describe "options" do
@@ -48,11 +41,10 @@ describe PivotalDoc::Generators::Base do
       end
     end
     
-    it "should open the output file and write the compiled haml (html)" do
-      Haml::Engine.stub!(:new).and_return(@engine)
-      @engine.stub!(:render).and_return('compiled haml')
-      @base.render_doc
-      File.read(@base.output_file).should eql('compiled haml')
+    it "should open the output file and write the output" do
+      output= 'My custom output'
+      @base.render_doc(output)
+      File.read(@base.output_file).should eql(output)
     end
     
     it "should handle any exceptions and output STDOUT" do

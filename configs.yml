@@ -4,3 +4,5 @@ password: 05351392a32a
 projects: 
   gts:
     id: 42409
+  core:
+    id: 59007

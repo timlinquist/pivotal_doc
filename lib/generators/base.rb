@@ -14,15 +14,16 @@ module PivotalDoc
         File.join(output_path, (@options[:output_file] || self.object_id.to_s) + output_ext)  
       end
       
+      def output_ext; '.default' end
+      
       def absolute_path
         File.dirname(__FILE__)
       end
       
-      def render_doc
+      def render_doc(output='')
         begin
           f= File.open(self.output_file, 'w+')
-          html= Haml::Engine.new(template).render(Object.new, {:items => @items})
-          f.write(html)
+          f.write(output)
         rescue Exception=>e
           $stdout.print(e.message)
           $stdout.flush
@@ -33,9 +34,8 @@ module PivotalDoc
       
       def template
         @template ||= File.read(File.join(File.dirname(__FILE__), '/../../templates/', template_name))
-      end
+      end      
       
-      def output_ext; '.default' end
       def template_name
         raise 'Not Implemented!'
       end

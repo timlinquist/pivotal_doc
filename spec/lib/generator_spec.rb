@@ -23,16 +23,17 @@ describe PivotalDoc::Generator do
       PivotalDoc::Release.stub!(:new).and_return(@release)
       PivotalTracker::Project.stub!(:find).and_return(@project)
       @release.stub!(:iteration).and_return(@iteration)
+      @name= 'github'
+      @items={@name=>{:stories=>[mock('Story')], :bugs=>[mock('Chore')], :chores => [mock('Bug1'), mock('Bug2')]} }
     end
 
     describe "Projects" do        
       before(:each) do
         PivotalDoc::Configuration.configs=nil
         PivotalDoc::Configuration.stub!(:filepath).and_return(File.join(File.dirname(__FILE__), '/../fixtures/', 'configs.yml'))
-        @items={:stories=>[mock('Story')], :bugs=>[mock('Chore')], :chores => [mock('Bug1'), mock('Bug2')] }
       end
       it "should group the stories for the latest iteration by type" do
-        @items.keys.each{|k| @release.should_receive(k).at_least(:once).and_return(@items[k]) }
+        @items[@name].keys.each{|k| @release.should_receive(k).at_least(:once).and_return(@items[@name][k]) }
         items= PivotalDoc::Generator.collect_items
         project_items= items.fetch(items.keys.last)
         project_items.each {|k,v| project_items[k].should eql(@release.send(k)) }
@@ -47,7 +48,7 @@ describe PivotalDoc::Generator do
         @html_gen.stub!(:render_doc)
       end
       it "should render the items with the specified format and custom options" do
-        PivotalDoc::Generators::HTML.should_receive(:new).with(@items, @options).and_return(@html_gen)
+        PivotalDoc::Generators::HTML.should_receive(:new).with(@items[@name], @options).and_return(@html_gen)
         PivotalDoc::Generator.generate(:html, @options)
       end
       it "should raise an error if the specified format isn't supported" do

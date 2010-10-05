@@ -6,7 +6,10 @@ module PivotalDoc
       def generate(format= :html, options={})
         Configuration.authenticate!
         raise FormatNotSupported.new(format) unless generators.has_key?(format)
-        generators[format].new(collect_items, options).render_doc
+        items= collect_items
+        Configuration.projects.keys.each do |name|          
+          generators[format].new(items[name], options).render_doc
+        end
       end
     
       def generators
@@ -17,8 +20,8 @@ module PivotalDoc
         items= {}
         Configuration.projects.each do |name, _attrs|
           id= _attrs['id']
-          release= Release.new(PivotalTracker::Project.find(id))
-          items[name]= {:stories=>release.stories, :bugs=>release.bugs, :chores=>release.chores}
+          release= Release.new(PivotalTracker::Project.find(id)) rescue nil
+          items[name]= {:stories=>release.stories, :bugs=>release.bugs, :chores=>release.chores} if release
         end
         items
       end
