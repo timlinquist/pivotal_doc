@@ -1,8 +1,8 @@
 module PivotalDoc
   module Generators
     class Base
-      def initialize(items, options={})
-        @items= items
+      def initialize(release, options={})
+        @release= release
         @options= options
       end
       
@@ -11,7 +11,7 @@ module PivotalDoc
       end
       
       def output_file
-        File.join(output_path, (@options[:output_file] || self.object_id.to_s) + output_ext)  
+        File.join(output_path, (@options[:output_file] || @release.name) + output_ext)  
       end
       
       def output_ext; '.default' end

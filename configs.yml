@@ -1,8 +1,8 @@
 username: g5search
 password: 05351392a32a
-# token: 8c508bbb1d4cb60f8fcfdf8731902614
+token: a85cb8f8325ec7e654625eee2e168a9f
 projects: 
   gts:
     id: 42409
-  core:
+  operations:
     id: 59007

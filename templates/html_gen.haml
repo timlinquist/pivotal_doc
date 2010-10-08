@@ -1,3 +1,22 @@
-%p= "There are #{items[:stories].inspect} stories" 
-%p= "There are #{items[:chores].inspect} chores" 
-%p= "There are #{items[:bugs].inspect} bugs" 
+#stories
+  %h3 Accepted Stories
+  - items[:stories].each do |story|
+    %p= "#{story.name}"
+    %p= "Requestor: #{story.requested_by}" 
+    %p= "Owned By: #{story.owned_by}"
+    %p= story.description
+    %p= "More Information - #{story.url}"
+
+  %h3 Accepted Bugs
+  - items[:bugs].each do |bug|
+    %p= "#{bug.name}"
+    %p= "Requestor: #{bug.requested_by}" 
+    %p= "Owned By: #{bug.owned_by}"
+    %p= bug.description
+    %p= "More Information - #{bug.url}"
+
+  %h3 Completed Chores
+  - items[:chores].each do |chore|
+    %p= "#{chore.name}"
+    %p= chore.description
+    %p= "More Information - #{chore.url}"

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe PivotalDoc::Generators::Text do
   before(:each) do
-    @text= PivotalDoc::Generators::Text.new({})
+    @text= PivotalDoc::Generators::Text.new(mocks_helper(:release))
   end
   
   after(:each) do

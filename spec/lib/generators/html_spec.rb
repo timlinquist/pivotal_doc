@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe PivotalDoc::Generators::HTML do
   before(:each) do
-    @html= PivotalDoc::Generators::HTML.new({})
+    @html= PivotalDoc::Generators::HTML.new(mocks_helper(:release))
     @engine= Haml::Engine.new('')
   end
   

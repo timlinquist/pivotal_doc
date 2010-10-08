@@ -1,15 +1,19 @@
 module PivotalDoc
   class Release
-    attr_accessor :project
+    attr_reader :project
     attr_reader :iteration
   
     def initialize(project, iteration=nil)
       @project= project
-      @iteration= iteration || latest_iteration
+      @iteration= (iteration || latest_iteration)
+    end
+  
+    def name
+      @project.name
     end
   
     def latest_iteration
-      PivotalTracker::Iteration.done(@project, :offset=>'-1').first
+      PT::Iteration.done(@project, :offset=>'-1').first
     end  
 
     def stories

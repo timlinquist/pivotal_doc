@@ -4,7 +4,7 @@ module PivotalDoc
       def template_name; 'html_gen.haml' end
       def output_ext; '.html' end
       def render_doc
-        html= Haml::Engine.new(template).render(Object.new, {:items => @items})
+        html= Haml::Engine.new(template).render(Object.new, {:release=>@release})
         super(html)
       end
     end
