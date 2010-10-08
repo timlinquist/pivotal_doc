@@ -1,1 +1,4 @@
 .DS_Store
+lib/generators/*.html
+lib/generators/*.txt
+lib/generators/*.default
