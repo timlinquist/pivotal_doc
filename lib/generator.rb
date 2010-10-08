@@ -10,6 +10,7 @@ module PivotalDoc
         releases.each do |release|          
           generators[format].new(release, options).render_doc
         end
+        true
       end
     
       def generators
