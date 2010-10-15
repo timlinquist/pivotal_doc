@@ -4,7 +4,7 @@ module MocksHelper
     return mocks[mock]
   end
 
-  private
+  private  
   def release
     release= PivotalDoc::Release.new(project, iteration)
     release.stub!(:stories).and_return(PTApiHelpers::mock_stories)

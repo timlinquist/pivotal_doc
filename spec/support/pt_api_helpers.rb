@@ -19,6 +19,10 @@ module PTApiHelpers
     mock_collection('iterations').collect{|iteration| set_attributes(PT::Iteration.new, iteration) }
   end
   
+  def self.mock_actual_release
+    mock_stories.detect{|s| s.story_type.downcase == 'release' }    
+  end
+  
   def self.mock_bugs
     mock_stories.reject{|s| s.story_type.downcase != 'bug' }
   end

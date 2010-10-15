@@ -29,6 +29,23 @@ describe PivotalDoc::Release do
       release= PivotalDoc::Release.new(@project)
       release.iteration.should eql(@latest_iteration)
     end
+    
+    describe "release of (me)" do
+      before(:each) do
+        @stories= PTApiHelpers::mock_stories
+        @me= PTApiHelpers::mock_actual_release
+        @latest_iteration.stub!(:stories).and_return(@stories)
+      end
+      
+      it "should find the \"release\" if there is one" do
+        @latest_iteration.should_receive(:stories).and_return(@stories)
+        @release.me.story_type.should eql('release')
+      end
+      
+      it "should know the name of the release" do
+        @release.name.should eql(@me.name)
+      end
+    end
 
     describe "stories" do
       before(:each) do

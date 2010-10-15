@@ -8,8 +8,12 @@ module PivotalDoc
       @iteration= (iteration || latest_iteration)
     end
     
+    def me
+      @me ||= self.iteration.stories.detect{|s| s.story_type.downcase=='release'} if self.iteration.stories
+    end
+    
     def name
-      self.object_id.to_s
+      me.name if me.respond_to?(:name) 
     end
   
     def project_name
@@ -18,11 +22,7 @@ module PivotalDoc
   
     def latest_iteration
       PT::Iteration.done(@project, :offset=>'-1').first
-    end  
-    
-    [:stories, :bugs, :chores].each do |m|
-      define_method("#{m}_delivered") { self.send(m).size }
-    end
+    end     
     
     def stories
       @stories ||= self.iteration.stories.reject do |s|
@@ -41,5 +41,9 @@ module PivotalDoc
         s.story_type.downcase != 'chore' || s.current_state != 'accepted'
       end
     end
+    
+    [:stories, :bugs, :chores].each do |m|
+      define_method("#{m}_delivered") { self.send(m).size }
+    end    
   end
 end

@@ -34,7 +34,6 @@
   story_type: feature
   url: http://www.pivotaltracker.com/story/show/4603104
 
-
 - created_at: 2010-08-06T19:46:38+00:00
   current_state: accepted
   description: We need to provision a secondary utility slice to deploy Mongo to
@@ -68,4 +67,21 @@
   requested_by: Tim Linquist
   story_type: bug
   url: http://www.pivotaltracker.com/story/show/4603106
+
+- created_at: 2010-08-06T19:46:38+00:00
+  current_state: Not Yet Started
+  description:
+  estimate: 
+  id: 4603105
+  integration_id: 
+  jira_id: 
+  jira_url: 
+  labels: 
+  name: Grateful Dead Sprint
+  other_id: 
+  owned_by: Project Owner
+  project_id: 42409
+  requested_by: Product Manager
+  story_type: release
+  url: http://www.pivotaltracker.com/story/show/4603105
     

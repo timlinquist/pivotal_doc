@@ -11,7 +11,8 @@ module PivotalDoc
       end
       
       def output_file
-        File.join(output_path, (@options[:output_file] || @release.name) + output_ext)  
+        name= @release.name || self.object_id.to_s
+        File.join(output_path, (@options[:output_file] || name) + output_ext)  
       end
       
       def output_ext; '.default' end
