@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe PivotalDoc::Generators::HTML do
   before(:each) do
-    @html= PivotalDoc::Generators::HTML.new(mocks_helper(:release))
+    @release= mocks_helper(:release)
+    @html= PivotalDoc::Generators::HTML.new(@release)
     @engine= Haml::Engine.new('')
   end
   
@@ -21,7 +22,13 @@ describe PivotalDoc::Generators::HTML do
     @html.template.should be_an_instance_of(String)
   end
   
-  it "should know its tempalte name" do
+  it "should use the template_name if specified" do
+    options= {:template_name=>'fancy.html'}
+    html= PivotalDoc::Generators::HTML.new(@release, options)
+    html.template_name.should eql(options[:template_name])
+  end
+  
+  it "should know its template name" do
     @html.template_name.should =~ /\.haml$/
   end
   

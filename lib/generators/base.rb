@@ -11,8 +11,12 @@ module PivotalDoc
       end
       
       def output_file
-        name= @release.name || self.object_id.to_s
-        File.join(output_path, (@options[:output_file] || name) + output_ext)  
+        name= @options[:output_file]
+        unless name
+          name=@release.name || self.object_id.to_s
+          name.gsub!(/\//, '') and name.gsub!(/\s/,'')
+        end
+        File.join(output_path, (name + output_ext))  
       end
       
       def output_ext; '.default' end
@@ -34,7 +38,9 @@ module PivotalDoc
       end
       
       def template
-        @template ||= File.read(File.join(File.dirname(__FILE__), '/../../templates/', template_name))
+        path= File.join(File.dirname(__FILE__), '/../../templates/', template_name)
+        raise TemplateNonExistent.new(template_name) unless File.exists?(path)
+        @template ||= File.read(path)
       end      
       
       def template_name

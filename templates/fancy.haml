@@ -1,0 +1,74 @@
+!!! Strict 
+%html 
+  %head 
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'} 
+    %title= release.name
+    %script{:type => "text/javascript", :src  => "../../assets/js/jquery-1.4.2.min.js"}
+    %script{:type => "text/javascript", :src  => "../../assets/js/jquery-ui-1.8.5.custom.min.js"}
+    %link{:rel=>"stylesheet", :href=>"../../assets/css/ui-lightness/jquery-ui-1.8.5.custom.css"}
+    %style{:type => "text/css", :media => "screen"}
+      :plain
+        p,div,h1,h2,h3,h4,h5,h6,span,a {font-family: Arial}
+        div#release_doc, div#accordian {padding-left: .5em;}
+        h2, h3 {padding: .5em 0;}
+        div#release_doc {
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+        }
+        div#release_info{
+          text-align: center;
+        }
+        div#accordian {padding: 0 30px}  
+        div.item {padding-left: .4em}
+        div.item_info {padding-left: .4em}
+    :javascript
+      $(function() {
+        $( "#accordian" ).accordion({ active: false, collapsible: true, autoHeight: false });
+      });
+  %body
+    #release_doc
+      #release_info
+        %h2= "Announcing the #{release.name} release for the #{release.project_name} project"
+        %p
+          = "This sprint began on #{release.iteration.start.fancy_format} and was completed on #{release.iteration.finish.fancy_format}.  It includes #{release.stories_delivered} new stories, #{release.bugs_delivered} bug fixes, and #{release.chores_delivered} miscellaneous chores."
+      #accordian
+        %h3
+          %a{:href=>'#'} Accepted Stories
+        .accodian_container
+          - release.stories.each do |story|
+            .item
+              %h4= "Story ##{story.id} - #{story.name}"
+              .item_info
+                %p= "Requestor: #{story.requested_by}" 
+                %p= "Completed By: #{story.owned_by}"
+                %p= "Description: #{story.description}"
+                %p
+                  / %a{:href=>story.url, :target=>'_blank'} More Information
+
+        %h3
+          %a{:href=>'#'} Bug Fixes
+        .accodian_container
+          - release.bugs.each do |bug|
+            .item
+              %h4= "Bug ##{bug.id} - #{bug.name}"
+              .item_info
+                %p= "Requestor: #{bug.requested_by}" 
+                %p= "Completed By: #{bug.owned_by}"
+                %p= "Description: #{bug.description}" 
+                %p
+                  / %a{:href=>bug.url, :target=>'_blank'} More Information
+          
+        %h3
+          %a{:href=>'#'} Miscellaneous Chores
+        .accodian_container
+          - release.chores.each do |chore|
+            .item
+              %h4= "Chore ##{chore.id} - #{chore.name}"
+              .item_info
+                %p= "Requestor: #{chore.requested_by}" 
+                %p= "Completed By: #{chore.owned_by}"
+                %p= "Description: #{chore.description}" 
+                %p
+                  / %a{:href=>chore.url, :target=>'_blank'} More Information

@@ -10,4 +10,13 @@ module PivotalDoc
       "The format (#{@format}) is not currently supported"
     end
   end
+  class TemplateNonExistent < PivotalDocException
+    def initialize(template_name)
+      @template_name= template_name
+    end
+    
+    def message
+      "The template named \"#{@template_name}\" doesn't exist?"
+    end    
+  end
 end
