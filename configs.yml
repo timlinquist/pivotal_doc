@@ -1,6 +1,8 @@
-username: test_dude
-password: mypassword
-token: 38ef6c6f39fa4719817ab24257156f57
+username: g5search
+password: 05351392a32a
+token: a85cb8f8325ec7e654625eee2e168a9f
 projects: 
-  github:
-    id: 1
+  gts:
+    id: 42409
+  operations:
+    id: 59007

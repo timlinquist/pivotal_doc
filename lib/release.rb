@@ -25,25 +25,26 @@ module PivotalDoc
     end     
     
     def stories
-      @stories ||= self.iteration.stories.reject do |s|
-        s.story_type.downcase != 'feature' || s.current_state.downcase != 'delivered'
-      end
+      @stories ||= filter_stories
     end
   
     def bugs
-      @bugs ||= self.iteration.stories.reject do |s|
-        s.story_type.downcase != 'bug' || s.current_state.downcase != 'delivered'
-      end
-    end
+      @bugs ||= filter_stories('bug')
+    end    
   
     def chores
-      @chores ||=  self.iteration.stories.reject do |s|
-        s.story_type.downcase != 'chore' || s.current_state != 'accepted'
-      end
+      @chores ||= filter_stories('chore')
     end
     
     [:stories, :bugs, :chores].each do |m|
       define_method("#{m}_delivered") { self.send(m).size }
-    end    
+    end
+    
+    private
+    def filter_stories(type='feature')
+      self.iteration.stories.reject do |s|
+        s.story_type.downcase != type || s.current_state.downcase != 'accepted'
+      end
+    end
   end
 end

@@ -76,11 +76,11 @@ describe PivotalDoc::Release do
         end
         
         it "should only get the \"delivered\" stories" do
-          @release.stories.each{|s| s.current_state.downcase.should eql('delivered')}
+          @release.stories.each{|s| s.current_state.downcase.should eql('accepted')}
         end
 
         it "should only get the \"delivered\" bugs" do
-          @release.bugs.each{|b| b.current_state.downcase.should eql('delivered')}
+          @release.bugs.each{|b| b.current_state.downcase.should eql('accepted')}
         end
 
         it "should only get the \"accepted\" chores" do
