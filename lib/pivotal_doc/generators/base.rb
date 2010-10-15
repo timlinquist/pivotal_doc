@@ -38,7 +38,7 @@ module PivotalDoc
       end
       
       def template
-        path= File.join(File.dirname(__FILE__), '/../../templates/', template_name)
+        path= File.join(PROJECT_ROOT, 'templates', template_name)
         raise TemplateNonExistent.new(template_name) unless File.exists?(path)
         @template ||= File.read(path)
       end      

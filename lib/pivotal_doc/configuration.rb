@@ -6,7 +6,7 @@ module PivotalDoc
       alias :authenticated? :authenticated
 
       def filepath
-        File.join(File.dirname(__FILE__), '/../configs.yml')
+        PROJECT_ROOT + 'configs.yml'
       end
 
       def configs
