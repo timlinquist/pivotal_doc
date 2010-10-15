@@ -2,77 +2,77 @@
   attachments: []
   created_at: 2010-08-05T18:09:40+00:00
   current_state: Delivered
-  description: Deploy core component of GTS to staging.
+  description: Deploy core component of app to staging.
   estimate: 2
-  id: 4586000
+  id: 1
   integration_id: 
   jira_id: 
   jira_url: 
   labels: 
-  name: Create staging env for GTS
+  name: Create staging env for app
   other_id: 
   owned_by: Tim Linquist
-  project_id: 42409
+  project_id: 42411
   requested_by: Tim Linquist
   story_type: feature
-  url: http://www.pivotaltracker.com/story/show/4586000,
+  url: http://www.pivotaltracker.com/story/show/1,
 
 - created_at: 2010-08-06T19:46:38+00:00
   current_state: accepted
-  description: We're fighting to process the volume of data when new sites are heavily crawled.  We need to detect bots at the request level and not persist any data for those requests.
+  description: 
   estimate: 1
-  id: 4603104
+  id: 2
   integration_id: 
   jira_id: 
   jira_url: 
   labels: 
-  name: Eliminate Bot traffic
+  name: Eliminate Bots from app
   other_id: 
   owned_by: Tim Linquist
-  project_id: 42409
+  project_id: 42411
   requested_by: Tim Linquist
   story_type: feature
-  url: http://www.pivotaltracker.com/story/show/4603104
+  url: http://www.pivotaltracker.com/story/show/2
 
 - created_at: 2010-08-06T19:46:38+00:00
   current_state: accepted
-  description: We need to provision a secondary utility slice to deploy Mongo to
+  description: MongoDB server
   estimate: 2
-  id: 4603105
+  id: 3
   integration_id: 
   jira_id: 
   jira_url: 
   labels: 
-  name: GTS Utility Slice
+  name: Mongo Master host
   other_id: 
   owned_by: Tim Linquist
-  project_id: 42409
+  project_id: 42411
   requested_by: Tim Linquist
   story_type: chore
-  url: http://www.pivotaltracker.com/story/show/4603105
+  url: http://www.pivotaltracker.com/story/show/3
 
 - created_at: 2010-08-06T19:46:38+00:00
   current_state: accepted
-  description: The bot detector is not filtering any bots
+  description: The app isn't working
   estimate: 2
-  id: 4603106
+  id: 4
   integration_id: 
   jira_id: 
   jira_url: 
   labels: 
-  name: Bot Detector not Filtering
+  name: The app needs to work better than it does
   other_id: 
   owned_by: Tim Linquist
-  project_id: 42409
+  project_id: 42411
   requested_by: Tim Linquist
   story_type: bug
-  url: http://www.pivotaltracker.com/story/show/4603106
+  url: http://www.pivotaltracker.com/story/show/4
 
 - created_at: 2010-08-06T19:46:38+00:00
   current_state: Not Yet Started
   description:
   estimate: 
-  id: 4603105
+  id: 5
   integration_id: 
   jira_id: 
   jira_url: 
@@ -80,8 +80,8 @@
   name: Grateful Dead Sprint
   other_id: 
   owned_by: Project Owner
-  project_id: 42409
+  project_id: 42411
   requested_by: Product Manager
   story_type: release
-  url: http://www.pivotaltracker.com/story/show/4603105
+  url: http://www.pivotaltracker.com/story/show/5
     
