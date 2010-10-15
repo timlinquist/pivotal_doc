@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pivotal_doc}
-  s.version = "0.0.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
      "lib/pivotal_doc/generators/html.rb",
      "lib/pivotal_doc/generators/text.rb",
      "lib/pivotal_doc/release.rb",
+     "pivotal_doc.gemspec",
      "spec/fixtures/configs.yml",
      "spec/fixtures/iterations.yml",
      "spec/fixtures/projects.yml",
