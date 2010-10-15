@@ -1,7 +1,7 @@
 - accepted_at: 2010-08-30T16:14:23+00:00
   attachments: []
   created_at: 2010-08-05T18:09:40+00:00
-  current_state: accepted
+  current_state: Delivered
   description: Deploy core component of GTS to staging.
   estimate: 2
   id: 4586000

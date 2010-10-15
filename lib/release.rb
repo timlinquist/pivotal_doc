@@ -20,20 +20,26 @@ module PivotalDoc
       PT::Iteration.done(@project, :offset=>'-1').first
     end  
     
-    def stories_delivered; stories.size end
-    def bugs_delivered; bugs.size end
-    def chores_delivered; chores.size end
-
+    [:stories, :bugs, :chores].each do |m|
+      define_method("#{m}_delivered") { self.send(m).size }
+    end
+    
     def stories
-      @stories ||= self.iteration.stories
+      @stories ||= self.iteration.stories.reject do |s|
+        s.story_type.downcase != 'feature' || s.current_state.downcase != 'delivered'
+      end
     end
   
     def bugs
-      @bugs ||= self.stories.reject{|s| s.story_type.downcase != 'bug'}
+      @bugs ||= self.iteration.stories.reject do |s|
+        s.story_type.downcase != 'bug' || s.current_state.downcase != 'delivered'
+      end
     end
   
     def chores
-      @chores ||= self.stories.reject{|s| s.story_type.downcase != 'chore'}
+      @chores ||=  self.iteration.stories.reject do |s|
+        s.story_type.downcase != 'chore' || s.current_state != 'accepted'
+      end
     end
   end
 end

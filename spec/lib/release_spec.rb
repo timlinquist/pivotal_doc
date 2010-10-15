@@ -13,7 +13,7 @@ describe PivotalDoc::Release do
     @release.latest_iteration
   end
   
-  describe "the current iteration" do
+  describe "the latest iteration" do
     before(:each) do
       @release.stub!(:latest_iteration).and_return(@latest_iteration)
     end
@@ -30,22 +30,46 @@ describe PivotalDoc::Release do
       release.iteration.should eql(@latest_iteration)
     end
 
-    describe "latest" do
-      it "should get the stories" do
-        stories= []
-        @latest_iteration.should_receive(:stories).and_return(stories)
-        @release.stories.should eql(stories)
+    describe "stories" do
+      before(:each) do
+        @stories= PTApiHelpers::mock_stories
+        @latest_iteration.stub!(:stories).and_return(@stories)
+      end
+      
+      it "should get the stories only" do
+        @latest_iteration.should_receive(:stories).and_return(@stories)
+        @release.stories.each{|s| s.story_type.downcase.should eql('feature') }
       end
 
       it "should get the bugs only" do
-        @latest_iteration.stub!(:stories).and_return(PTApiHelpers::mock_stories)
+        @latest_iteration.should_receive(:stories).and_return(@stories)
         @release.bugs.each{|b| b.story_type.downcase.should eql('bug') }
       end
       
       it "should get the chores only" do
-        @latest_iteration.stub!(:stories).and_return(PTApiHelpers::mock_stories)
-        @release.chores.each{|b| b.story_type.downcase.should eql('chore') }        
+        @latest_iteration.should_receive(:stories).and_return(@stories)
+        @release.chores.each{|c| c.story_type.downcase.should eql('chore') }        
       end
+
+      describe "finished work" do
+        [:stories, :chores, :bugs].each do |m|
+          it "should know the #{m} delivered in this release" do
+            @release.send("#{m}_delivered").should eql(@release.send(m).size)
+          end
+        end
+        
+        it "should only get the \"delivered\" stories" do
+          @release.stories.each{|s| s.current_state.downcase.should eql('delivered')}
+        end
+
+        it "should only get the \"delivered\" bugs" do
+          @release.bugs.each{|b| b.current_state.downcase.should eql('delivered')}
+        end
+
+        it "should only get the \"accepted\" chores" do
+          @release.chores.each{|c| c.current_state.downcase.should eql('accepted')}
+        end
+      end      
     end
   end  
 end
