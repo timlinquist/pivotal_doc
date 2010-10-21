@@ -4,6 +4,8 @@ module PivotalDoc
       attr_accessor :releases
       
       def generate(format= :html, options={})
+        #allow splat to give file,options
+        #pass file to configuration if present else options
         Configuration.authenticate!
         raise FormatNotSupported.new(format) unless generators.has_key?(format)
         collect_releases!

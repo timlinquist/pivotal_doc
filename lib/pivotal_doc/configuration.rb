@@ -5,6 +5,11 @@ module PivotalDoc
       attr_reader :authenticated
       alias :authenticated? :authenticated
 
+      #Provide object access
+      #Accept a file/options on initialize
+      #Parse file if present
+      #use options if present
+
       def filepath=(file)
         @filepath= file
       end
