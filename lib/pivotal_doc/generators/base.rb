@@ -27,6 +27,7 @@ module PivotalDoc
       
       def render_doc(output='')
         begin
+          FileUtils.mkdir_p(output_path)
           f= File.open(self.output_file, 'w+')
           f.write(output)
         rescue Exception=>e

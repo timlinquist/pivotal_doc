@@ -5,6 +5,10 @@ module PivotalDoc
       attr_reader :authenticated
       alias :authenticated? :authenticated
 
+      def filepath=(file)
+        @filepath= file
+      end
+      
       def filepath
         PROJECT_ROOT + 'configs.yml'
       end
@@ -15,6 +19,10 @@ module PivotalDoc
       
       def projects
         self.configs['projects']
+      end
+      
+      def output_path
+        self.configs['output_path']
       end
       
       def authenticate!
