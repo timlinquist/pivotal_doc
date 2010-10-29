@@ -36,7 +36,7 @@
       #accordian
         %h3
           %a{:href=>'#'} Accepted Stories
-        .accodian_container
+        .accordian_container
           - release.stories.each do |story|
             .item
               %h4= "Story ##{story.id} - #{story.name}"
@@ -49,7 +49,7 @@
 
         %h3
           %a{:href=>'#'} Bug Fixes
-        .accodian_container
+        .accordian_container
           - release.bugs.each do |bug|
             .item
               %h4= "Bug ##{bug.id} - #{bug.name}"
@@ -62,7 +62,7 @@
           
         %h3
           %a{:href=>'#'} Miscellaneous Chores
-        .accodian_container
+        .accordian_container
           - release.chores.each do |chore|
             .item
               %h4= "Chore ##{chore.id} - #{chore.name}"
