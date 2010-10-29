@@ -6,7 +6,7 @@ Either a file path (absolute) or a settings hash are supported for specifying yo
 Supported formats: [:html, :text]
 There is also a 'fancy' template for the html generator.  Supporting custom templates is planned soon.  Until then this is just a sample to get you started.  To make use of the fancy html you need to specify the template_name in your .yml file or settings hash (see sample below.)
 
-PivotalDoc::Generator.generate(format, 'absolut_path_to_my_file')
+PivotalDoc::Generator.generate(format, 'absolute_path_to_my_file')
 
 PivotalDoc::Generator.generate(format, {
   'username'    => 'my_name',
