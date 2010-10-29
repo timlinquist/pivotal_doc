@@ -45,9 +45,9 @@ describe PivotalDoc::Generator do
         @html_gen= PivotalDoc::Generators::HTML.new({})
         @html_gen.stub!(:render_doc)
       end
-      it "should render the release with the specified format and custom options" do
-        PivotalDoc::Generators::HTML.should_receive(:new).with(@release, @options).and_return(@html_gen)
-        PivotalDoc::Generator.generate(:html, nil, @options)
+      it "should render the release with the specified format and custom settings" do
+        PivotalDoc::Generators::HTML.should_receive(:new).with(@release, @config.settings).and_return(@html_gen)
+        PivotalDoc::Generator.generate(:html)
       end
       it "should raise an error if the specified format isn't supported" do
         lambda{ PivotalDoc::Generator.generate(:unsupported) }.should raise_error(PivotalDoc::FormatNotSupported)        

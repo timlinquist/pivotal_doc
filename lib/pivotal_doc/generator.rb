@@ -4,13 +4,13 @@ module PivotalDoc
       attr_accessor :releases
       attr_reader :config
       
-      def generate(format, settings={}, options={})
+      def generate(format, settings={})
         @config= PivotalDoc::Configuration.new(settings)
         @config.authenticate!
         raise FormatNotSupported.new(format) unless generators.has_key?(format)
         collect_releases!
         releases.each do |release|          
-          generators[format].new(release, options).render_doc
+          generators[format].new(release, config.settings).render_doc
         end
         true
       end

@@ -7,11 +7,11 @@ module PivotalDoc
       end
       
       def output_path
-        @options[:output_path] || absolute_path
+        @options['output_path'] || absolute_path
       end
       
       def output_file
-        name= @options[:output_file]
+        name= @options['output_file']
         unless name
           name=@release.name || self.object_id.to_s
           name.gsub!(/\//, '') and name.gsub!(/\s/,'')

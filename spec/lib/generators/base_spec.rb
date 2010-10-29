@@ -28,7 +28,7 @@ describe PivotalDoc::Generators::Base do
       end
 
       it "should use the output_file if present" do
-        base= PivotalDoc::Generators::Base.new(@release, {:output_file=>'my_file'})
+        base= PivotalDoc::Generators::Base.new(@release, {'output_file'=>'my_file'})
         base.output_file.should =~ /\/my_file/
       end
 
@@ -38,7 +38,7 @@ describe PivotalDoc::Generators::Base do
       end
 
       it "should use the output_path if present" do
-        base= PivotalDoc::Generators::Base.new(@release, {:output_path=>'my_path'})
+        base= PivotalDoc::Generators::Base.new(@release, {'output_path'=>'my_path'})
         base.output_path.should =~ /^my_path/
       end
 
