@@ -1,11 +1,33 @@
 Automated release notes for apps hosted on pivotaltracker.com.  Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
 
+Usage:
+Either a file path (absolute) or a settings hash are supported for specifying your Pivotal Tracker credentials.
+
+Supported formats: [:html, :text]
+There is also a 'fancy' template for the html generator.  Supporting custom templates is planned soon.  Until then this is just a sample to get you started.  To make use of the fancy html you need to specify the template_name in your .yml file or settings hash (see sample below.)
+
+PivotalDoc::Generator.generate(format, 'absolut_path_to_my_file')
+
+PivotalDoc::Generator.generate(format, {
+  'username'    => 'my_name',
+  'password'    => 'my_password',
+  'token'       => 'my_token' #Not needed if you specify username/password,
+  'template_name'=>'fancy.html',
+  'projects'    => {'github'=>
+    {
+      'id'        =>1, #This is the project_id from Pivotal Tracker
+      'members'   =>['cyclone'],
+    }
+  }
+})
+
+Also see the configs.yml sample file under spec/fixtures.
+
+Note: The string keys are required (Using YAML to load file if specified.)
 Note: It's recommended you define a story of type 'release' for each iteration to properly show the title,start/end dates, and points on the release notes.
 
-Currently there is only support for .html or .txt output.
-
 Planned:
-
+ Custom templates
  Attachment support
  Comment support for stories
  Parsable descriptions for more granular descriptions on stories
