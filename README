@@ -32,3 +32,6 @@ Planned:
  Comment support for stories
  Parsable descriptions for more granular descriptions on stories
  PDF ?
+
+
+LASTLY, a big shout out to @jsmestad, author of the pivotal-tracker gem.  This gem provides a beautiful Active Record style DSL for interacting with Pivotal Tracker's API.
