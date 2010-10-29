@@ -1,9 +1,0 @@
-username: g5search
-password: 05351392a32a
-token: a85cb8f8325ec7e654625eee2e168a9f
-output_path: '/Users/tim/projects/output'
-projects: 
-  gts:
-    id: 42409
-  operations:
-    id: 59007
