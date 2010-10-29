@@ -8,8 +8,11 @@ begin
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
     gem.name = "pivotal_doc"
     gem.summary = %Q{A release documentation generator for pivotaltracker.com}
-    gem.description = %Q{A release documentation generator for pivotaltracker.com}
-    gem.email = "timo3377@gmail.com"
+    gem.description = %Q{
+        Automated release notes for apps hosted on pivotaltracker.com.  
+        Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
+      }
+    gem.email = "tim.linquist@gmail.com"
     gem.homepage = "http://github.com/timo3377/pivotal_doc"
     gem.authors = ["Tim Linquist"]
     gem.files.include %w(templates/ .gitignore assets/ ext/ lib/pivotal_doc/)

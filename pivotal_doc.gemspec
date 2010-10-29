@@ -10,7 +10,10 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
   s.date = %q{2010-10-29}
-  s.description = %q{A release documentation generator for pivotaltracker.com}
+  s.description = %q{
+        Automated release notes for apps hosted on pivotaltracker.com.  
+        Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
+      }
   s.email = %q{timo3377@gmail.com}
   s.extra_rdoc_files = [
     "README"
