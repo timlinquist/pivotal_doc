@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
-  s.date = %q{2010-10-15}
+  s.date = %q{2010-10-29}
   s.description = %q{A release documentation generator for pivotaltracker.com}
   s.email = %q{timo3377@gmail.com}
   s.extra_rdoc_files = [
@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
      "assets/css/ui-lightness/jquery-ui-1.8.5.custom.css",
      "assets/js/jquery-1.4.2.min.js",
      "assets/js/jquery-ui-1.8.5.custom.min.js",
-     "configs.yml",
      "ext/date.rb",
      "lib/pivotal_doc.rb",
      "lib/pivotal_doc/configuration.rb",
