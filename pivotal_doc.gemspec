@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pivotal_doc}
-  s.version = "1.0.0"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
         Automated release notes for apps hosted on pivotaltracker.com.  
         Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
       }
-  s.email = %q{timo3377@gmail.com}
+  s.email = %q{tim.linquist@gmail.com}
   s.extra_rdoc_files = [
     "README"
   ]
