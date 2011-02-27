@@ -7,7 +7,8 @@ PT= PivotalTracker unless defined?(PT)
 PROJECT_ROOT= File.join(File.dirname(__FILE__), '/../') unless defined?(PROJECT_ROOT)
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
-Dir[File.expand_path(File.join('../ext','**','*.rb'))].each {|f| require f}
+#Ruby extensions
+require File.join('pivotal_doc/ext', 'date.rb')
 
 #Utilities
 require File.join('pivotal_doc/configuration')
