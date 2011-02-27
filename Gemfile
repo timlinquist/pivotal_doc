@@ -3,6 +3,7 @@ source "http://gems.github.com"
 source "http://gems.g5search.com"
 
 gem 'fastercsv'
+gem 'rake'
 
 group :development, :test do
   gem 'jeweler'

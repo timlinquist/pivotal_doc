@@ -51,5 +51,6 @@ DEPENDENCIES
   haml
   jeweler
   pivotal-tracker
+  rake
   rspec (~> 2.0)
   ruby-debug

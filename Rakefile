@@ -1,5 +1,10 @@
-require 'spec/rake/spectask'
 require 'rubygems'
+require 'bundler'
+Bundler.setup(:default, :test)
+
+require 'rspec'
+require 'rspec/core/rake_task.rb'
+require 'jeweler'
 require 'rake'
 
 begin
@@ -34,14 +39,8 @@ rescue LoadError
   end
 end
 
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
-end
-
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
+Rspec::Core::RakeTask.new(:spec)
+Rspec::Core::RakeTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
