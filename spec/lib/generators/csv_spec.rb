@@ -1,5 +1,4 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
-require 'ruby-debug'
 
 describe PivotalDoc::Generators::CSV do
   before(:each) do

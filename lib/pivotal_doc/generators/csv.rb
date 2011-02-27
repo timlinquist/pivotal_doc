@@ -4,8 +4,8 @@ module PivotalDoc
   module Generators
     class CSV < Base
       COLUMNS=[
-          'ID', 'Feature', 'Description', 'Requested By', 'Completed By', 
-        ]
+        'ID', 'Feature', 'Description', 'Requested By', 'Completed By', 
+      ]
       def template_name; 'output.csv' end
       def output_ext; '.csv' end
       def render_doc

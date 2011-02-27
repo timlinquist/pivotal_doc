@@ -2,15 +2,24 @@ require 'rubygems'
 require 'yaml'
 require 'pivotal-tracker'
 require 'haml'
+
 PT= PivotalTracker unless defined?(PT)
 PROJECT_ROOT= File.join(File.dirname(__FILE__), '/../') unless defined?(PROJECT_ROOT)
 
-#Load generators explicitly
-path= File.dirname(__FILE__) + '/pivotal_doc/generators/'
-require File.join(path, 'base.rb')
-require File.join(path,'html.rb')
-require File.join(path,'text.rb')
-require File.join(path,'csv.rb')
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+Dir[File.expand_path(File.join('../ext','**','*.rb'))].each {|f| require f}
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'../ext','**','*.rb'))].each {|f| require f}
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'pivotal_doc/', '*.rb'))].each {|f| require f}
+#Utilities
+require File.join('pivotal_doc/configuration')
+require File.join('pivotal_doc/exceptions')
+require File.join('pivotal_doc/generator')
+
+#Core classes
+require File.join('pivotal_doc/release')
+
+#Generators
+require File.join('pivotal_doc/generators', 'base.rb')
+require File.join('pivotal_doc/generators', 'html.rb')
+require File.join('pivotal_doc/generators', 'text.rb')
+require File.join('pivotal_doc/generators', 'csv.rb')
+
