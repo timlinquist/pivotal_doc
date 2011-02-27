@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../../spec_helper'
+require 'ruby-debug'
 
 describe PivotalDoc::Generators::CSV do
   before(:each) do
@@ -11,13 +12,11 @@ describe PivotalDoc::Generators::CSV do
   end
   
   describe "Generating CSV" do
-    before(:each) do
-      pending 'Need to verify csv output'      
-    end
-
-    it "should open the output file and write the csv" do
+    it "should open the output file and write the csv with columns" do
       @csv.render_doc
-      File.read(@csv.output_file).should eql('compiled haml')
+      output= File.read(@csv.output_file)
+      output.should =~ /#{PivotalDoc::Generators::CSV::COLUMNS.join(',')}/
+      @release.features.each{|f| output =~ @csv.fields(f) }
     end
 
     it "should read the file contents" do
@@ -26,6 +25,12 @@ describe PivotalDoc::Generators::CSV do
 
     it "should know its template name" do
       @csv.template_name.should =~ /\.csv$/
-    end    
+    end 
+    
+    it "include each field" do
+      fields= @csv.fields(@release.features.first)
+      fields.should be_an_instance_of(Array)
+      fields.should have(PivotalDoc::Generators::CSV::COLUMNS.size).items
+    end   
   end
 end

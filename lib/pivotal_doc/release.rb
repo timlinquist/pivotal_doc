@@ -22,6 +22,10 @@ module PivotalDoc
   
     def latest_iteration
       PT::Iteration.done(@project, :offset=>'-1').first
+    end
+    
+    def features
+      self.stories + self.bugs + self.chores
     end     
     
     def stories
