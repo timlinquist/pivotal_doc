@@ -1,9 +1,6 @@
 module PivotalDoc
   class Generator    
     class << self
-      attr_accessor :releases
-      attr_reader :config
-      
       def generate(format, settings={})
         config= PivotalDoc::Configuration.new(settings)
         config.authenticate!

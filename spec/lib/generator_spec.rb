@@ -1,5 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
-require 'ruby-debug'
+require 'spec_helper'
 
 describe PivotalDoc::Generator do
   before(:each) do

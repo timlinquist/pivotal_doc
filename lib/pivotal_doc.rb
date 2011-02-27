@@ -10,6 +10,7 @@ path= File.dirname(__FILE__) + '/pivotal_doc/generators/'
 require File.join(path, 'base.rb')
 require File.join(path,'html.rb')
 require File.join(path,'text.rb')
+require File.join(path,'csv.rb')
 
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'../ext','**','*.rb'))].each {|f| require f}
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'pivotal_doc/', '*.rb'))].each {|f| require f}
