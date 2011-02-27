@@ -16,7 +16,6 @@ require File.join('pivotal_doc/generator')
 
 #Core classes
 require File.join('pivotal_doc/release')
-require File.join('pivotal_doc/label_filter')
 
 #Generators
 require File.join('pivotal_doc/generators', 'base.rb')
