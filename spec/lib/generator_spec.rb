@@ -28,6 +28,10 @@ describe PivotalDoc::Generator do
     end    
   end
   
+  describe "stories by label" do
+    it 'should generate output'
+  end
+  
   describe "releases" do
     before(:each) do
       @release= mocks_helper(:release)
