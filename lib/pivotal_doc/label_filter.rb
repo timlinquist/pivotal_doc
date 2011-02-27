@@ -2,7 +2,6 @@ module PivotalDoc
   class LabelFilter
     attr_reader :project
     attr_accessor :label
-    
     def initialize(project, label)
       @project= project
       @label= label
