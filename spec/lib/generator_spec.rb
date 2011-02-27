@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+require 'ruby-debug'
 
 describe PivotalDoc::Generator do
   before(:each) do
@@ -13,29 +14,51 @@ describe PivotalDoc::Generator do
   
   describe "Configuring" do
     before(:each) do
-      PivotalDoc::Generator.stub!(:collect_releases!)
-      PivotalDoc::Generator.releases= []
+      PivotalDoc::Generator.stub!(:collect_releases!).and_return([])
     end
-
     it "should create a config object from the settings" do
       settings= {}
-      @config.stub!(:authenticate!)
       PivotalDoc::Configuration.should_receive(:new).with(settings).and_return(@config)
+      @config.stub!(:authenticate!)
       PivotalDoc::Generator.generate(:html, settings)
-      PivotalDoc::Generator.config.should eql(@config)
     end
 
     it "should authenticate against pivotal before generating the release docs" do
       @config.should_receive(:authenticate!)
       PivotalDoc::Generator.generate(:html)
+    end    
+  end
+  
+  describe "releases" do
+    before(:each) do
+      @release= mocks_helper(:release)
+      PivotalDoc::Release.stub!(:new).and_return(@release)
+    end
+    
+    it "should create a release for each project" do
+      PT::Iteration.stub!(:current).and_return(mocks_helper(:iteration))
+      @config.projects.each do |name, settings| 
+        PT::Project.should_receive(:find).with(settings['id'].to_i).and_return(@release.project) 
+      end
+      releases= PivotalDoc::Generator.collect_releases!(@config)
+      releases.size.should eql(@config.projects.size)
+    end
+    
+    it "create a current iteration for the release if current is set for the project" do
+      PT::Project.stub!(:find).and_return(@release.project)      
+      iteration= mocks_helper(:iteration)
+      PT::Iteration.should_receive(:current).exactly(:once).and_return(iteration)
+      PivotalDoc::Generator.collect_releases!(@config)
     end
   end
+  
 
   describe "generation" do
     before(:each) do
       @config.stub!(:authenticate!).and_return(true)
       @release= mocks_helper(:release)
       PT::Project.stub!(:find).and_return(@release.project)
+      PT::Iteration.stub!(:current).and_return(mocks_helper(:iteration))
       PivotalDoc::Release.stub!(:new).and_return(@release)
     end
 

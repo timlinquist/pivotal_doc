@@ -1,11 +1,17 @@
-username: humpie
-password: dome
+username: mc
+password: hitthenail
 token: some_funky_guid
-projects: 
+projects:
   github:
    id: 1
    members: 
      - [
-         'hot.box@superhighme.com', 
          'hammer.time@rockyajaw.com'
        ]     
+  pivotal_doc:
+   id: 2
+   current: true
+   members: 
+    - [
+        'hammer.time@rockyajaw.com'
+      ]     
