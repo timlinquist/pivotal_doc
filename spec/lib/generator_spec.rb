@@ -43,21 +43,32 @@ describe PivotalDoc::Generator do
       releases.size.should eql(@config.projects.size)
     end
     
-    it "create a current iteration for the release if current is set for the project" do
-      PT::Project.stub!(:find).and_return(@release.project)      
-      iteration= mocks_helper(:iteration)
-      PT::Iteration.should_receive(:current).exactly(:once).and_return(iteration)
-      PivotalDoc::Generator.collect_releases!(@config)
+    describe "current" do
+      it "create a current iteration for the release if current is set for the project" do
+        PT::Project.stub!(:find).and_return(@release.project)      
+        iteration= mocks_helper(:iteration)
+        PT::Iteration.should_receive(:current).exactly(:once).and_return(iteration)
+        PivotalDoc::Generator.collect_releases!(@config)
+      end
+      
+      it "create a sprint for the current iteration instead of a release" do
+        PT::Project.stub!(:find).and_return(@release.project)      
+        iteration= mocks_helper(:iteration)
+        PT::Iteration.stub!(:current).and_return(iteration)
+        releases= PivotalDoc::Generator.collect_releases!(@config)        
+        releases.last.should be_an_instance_of(PivotalDoc::Sprint)
+      end
     end
   end
-  
 
   describe "generation" do
     before(:each) do
       @config.stub!(:authenticate!).and_return(true)
-      @release= mocks_helper(:release)
-      PT::Project.stub!(:find).and_return(@release.project)
+      @release = mocks_helper(:release)
       PT::Iteration.stub!(:current).and_return(mocks_helper(:iteration))
+      @sprint =  PivotalDoc::Sprint.new(@release.project)
+      PT::Project.stub!(:find).and_return(@release.project)
+      PivotalDoc::Sprint.stub!(:new).and_return(@sprint)
       PivotalDoc::Release.stub!(:new).and_return(@release)
     end
 
@@ -67,7 +78,14 @@ describe PivotalDoc::Generator do
         @html_gen= PivotalDoc::Generators::HTML.new({})
         @html_gen.stub!(:render_doc)
       end
+      it "use the generators format if there is one" do
+        sprint_generator= mock('PivotalDoc::Generators::Sprint')
+        @sprint.generator(:html).should_receive(:new).exactly(:once).with(@sprint, @config.settings).and_return(sprint_generator)
+        sprint_generator.should_receive(:render_doc)
+        PivotalDoc::Generator.generate(:html)        
+      end
       it "should render the release with the specified format and custom settings" do
+        @sprint.generator(:html).stub!(:new).and_return(@html_gen)
         PivotalDoc::Generators::HTML.should_receive(:new).with(@release, @config.settings).and_return(@html_gen)
         PivotalDoc::Generator.generate(:html)
       end

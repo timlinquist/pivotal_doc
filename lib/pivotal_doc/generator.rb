@@ -6,22 +6,26 @@ module PivotalDoc
         config.authenticate!
         raise FormatNotSupported.new(format) unless generators.has_key?(format)
         releases= collect_releases!(config)
-        releases.each do |release|          
-          generators[format].new(release, config.settings).render_doc
+        releases.each do |release|
+          generator= release.generator(format) if release.respond_to?(:generator)
+          (generator || generators[format]).new(release, config.settings).render_doc
         end
         true
       end      
     
       def generators
-        { :text=>Generators::Text, :html=>Generators::HTML }
+        { :text=>Generators::Text, :html=>Generators::HTML, :csv=>Generators::CSV }
       end
     
       def collect_releases!(config)
         releases= []
         config.projects.each do |name, _attrs|
           project= PT::Project.find(_attrs['id'].to_i)
-          iteration= PT::Iteration.current(project) if _attrs['current']
-          releases << Release.new(project, iteration)
+          if _attrs['current']
+            releases << Sprint.new(project)
+          else
+            releases << Release.new(project)
+          end
         end
         return releases
       end

@@ -43,7 +43,7 @@ module PivotalDoc
         path= File.join(PROJECT_ROOT, 'templates', template_name)
         raise TemplateNonExistent.new(template_name) unless File.exists?(path)
         @template ||= File.read(path)
-      end      
+      end
       
       def template_name
         raise 'Not Implemented!'
