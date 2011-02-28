@@ -13,7 +13,7 @@ module PivotalDoc
       def output_file
         name= @options['output_file']
         unless name
-          name=@release.name || self.object_id.to_s
+          name=@release.name || @release.project_name || self.object_id.to_s
           name.gsub!(/\//, '') and name.gsub!(/\s/,'')
         end
         File.join(output_path, (name + output_ext))  

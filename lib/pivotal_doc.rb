@@ -23,7 +23,6 @@ require File.join('pivotal_doc/sprint')
 #Generators
 require File.join('pivotal_doc/generators', 'base')
 require File.join('pivotal_doc/generators', 'html')
-require File.join('pivotal_doc/generators', 'text')
 require File.join('pivotal_doc/generators', 'csv')
 require File.join('pivotal_doc/generators', 'sprint')
 

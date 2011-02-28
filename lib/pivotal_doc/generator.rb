@@ -15,7 +15,7 @@ module PivotalDoc
       end      
     
       def generators
-        { :text=>Generators::Text, :html=>Generators::HTML, :csv=>Generators::CSV }
+        { :html=>Generators::HTML, :csv=>Generators::CSV }
       end
     
       def collect_releases!(config)
