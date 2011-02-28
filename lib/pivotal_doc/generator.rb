@@ -3,9 +3,9 @@ module PivotalDoc
     class << self
       #TODO: Clean this mutatant up
       def generate(format, settings={})
+        raise FormatNotSupported.new(format) unless generators.has_key?(format)
         config= PivotalDoc::Configuration.new(settings)
         config.authenticate!
-        raise FormatNotSupported.new(format) unless generators.has_key?(format)
         releases= collect_releases!(config)
         releases.each do |release|
           generator= release.generator(format) if release.respond_to?(:generator)

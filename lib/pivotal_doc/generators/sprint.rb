@@ -1,6 +1,10 @@
 module PivotalDoc
   module Generators
     class Sprint < Base
+      def initialize(sprint, options={})
+        @sprint=sprint
+        super(@sprint, options)
+      end
       def template_name
         @options['template_name'] || 'sprint.haml' 
       end
