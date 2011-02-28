@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
-  s.date = %q{2011-02-27}
+  s.date = %q{2011-02-28}
   s.description = %q{
         Automated release notes for apps hosted on pivotaltracker.com.  
         Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
@@ -43,28 +43,34 @@ Gem::Specification.new do |s|
     "assets/css/ui-lightness/jquery-ui-1.8.5.custom.css",
     "assets/js/jquery-1.4.2.min.js",
     "assets/js/jquery-ui-1.8.5.custom.min.js",
-    "ext/date.rb",
     "lib/pivotal_doc.rb",
     "lib/pivotal_doc/configuration.rb",
     "lib/pivotal_doc/exceptions.rb",
+    "lib/pivotal_doc/ext/date.rb",
     "lib/pivotal_doc/generator.rb",
     "lib/pivotal_doc/generators/base.rb",
     "lib/pivotal_doc/generators/csv.rb",
     "lib/pivotal_doc/generators/html.rb",
+    "lib/pivotal_doc/generators/sprint.rb",
     "lib/pivotal_doc/generators/text.rb",
     "lib/pivotal_doc/release.rb",
+    "lib/pivotal_doc/sprint.rb",
+    "lib/pivotal_doc/work.rb",
     "pivotal_doc.gemspec",
     "spec/fixtures/configs.yml",
     "spec/fixtures/iterations.yml",
     "spec/fixtures/projects.yml",
     "spec/fixtures/stories.yml",
     "spec/lib/configuration_spec.rb",
+    "spec/lib/ext/date_spec.rb",
     "spec/lib/generator_spec.rb",
     "spec/lib/generators/base_spec.rb",
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
+    "spec/lib/generators/sprint_spec.rb",
     "spec/lib/generators/text_spec.rb",
     "spec/lib/release_spec.rb",
+    "spec/lib/sprint_spec.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
     "spec/support/mocks_helper.rb",
@@ -72,7 +78,8 @@ Gem::Specification.new do |s|
     "templates/fancy.haml",
     "templates/output.csv",
     "templates/output.haml",
-    "templates/output.txt"
+    "templates/output.txt",
+    "templates/sprint.haml"
   ]
   s.homepage = %q{http://github.com/timo3377/pivotal_doc}
   s.require_paths = ["lib"]
@@ -80,12 +87,15 @@ Gem::Specification.new do |s|
   s.summary = %q{A release documentation generator for pivotaltracker.com}
   s.test_files = [
     "spec/lib/configuration_spec.rb",
+    "spec/lib/ext/date_spec.rb",
     "spec/lib/generator_spec.rb",
     "spec/lib/generators/base_spec.rb",
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
+    "spec/lib/generators/sprint_spec.rb",
     "spec/lib/generators/text_spec.rb",
     "spec/lib/release_spec.rb",
+    "spec/lib/sprint_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/mocks_helper.rb",
     "spec/support/pt_api_helpers.rb"
