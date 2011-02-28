@@ -21,7 +21,7 @@
   %body
     #sprint_doc
       #sprint_info
-        %h2= = "This sprint begins on #{sprint.iteration.start.fancy_format} and ends on #{sprint.iteration.finish.fancy_format}."
+        %h2= "This sprint begins on #{sprint.iteration.start.fancy_format} and ends on #{sprint.iteration.finish.fancy_format}."
       #stories
         %h3 Proposed Stories
         - sprint.stories.each do |story|
