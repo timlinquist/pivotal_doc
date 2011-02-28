@@ -80,7 +80,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/timo3377/pivotal_doc}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.1}
+  s.rubygems_version = %q{1.5.3}
   s.summary = %q{A release documentation generator for pivotaltracker.com}
   s.test_files = [
     "spec/lib/configuration_spec.rb",
