@@ -3,3 +3,4 @@ lib/generators/*.html
 lib/generators/*.txt
 lib/generators/*.default
 pkg/*
+saikuro/*

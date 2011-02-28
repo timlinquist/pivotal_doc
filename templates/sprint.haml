@@ -1,0 +1,48 @@
+!!! Strict 
+%html 
+  %head 
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'} 
+    %title= sprint.iteration.start.fancy_format
+    %style{:type => "text/css", :media => "screen"}
+      :plain
+        p,div,h1,h2,h3,h4,h5,h6,span,a {font-family: Arial}
+        div#sprint_doc {padding-left: .5em;}
+        h2, h3 {padding: .5em 0;}
+        h3 {text-decoration: underline;}
+        div#sprint_doc {
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: left;
+        }
+        div#chores, div#bugs, div#stories{ padding-left: 0.6em }
+        div.item {padding-left: .4em}
+        div.item_info {padding-left: .4em}
+  %body
+    #sprint_doc
+      #sprint_info
+        %h2= = "This sprint begins on #{sprint.iteration.start.fancy_format} and ends on #{sprint.iteration.finish.fancy_format}."
+      #stories
+        %h3 Proposed Stories
+        - sprint.stories.each do |story|
+          .item
+            %h4= "Story ##{story.id} - #{story.name}"
+            .item_info
+              %p= "Requestor: #{story.requested_by}" 
+              %p= "Description: #{story.description}"
+      #bugs
+        %h3 Bug Fixes
+        - sprint.bugs.each do |bug|
+          .item
+            %h4= "Bug ##{bug.id} - #{bug.name}"
+            .item_info
+              %p= "Requestor: #{bug.requested_by}" 
+              %p= "Description: #{bug.description}" 
+      #chores    
+        %h3 Miscellaneous Chores
+        - sprint.chores.each do |chore|
+          .item
+            %h4= "Chore ##{chore.id} - #{chore.name}"
+            .item_info
+              %p= "Requestor: #{chore.requested_by}" 
+              %p= "Description: #{chore.description}" 

@@ -4,7 +4,7 @@ module PivotalDoc
   module Generators
     class CSV < Base
       COLUMNS=[
-        'ID', 'Name', 'Type', 'Description', 'Requested By', 'Completed By'
+        'ID', 'Name', 'Type', 'Description', 'State', 'Requested By', 'Completed By'
       ]
       def template_name; 'output.csv' end
       def output_ext; '.csv' end
@@ -16,7 +16,15 @@ module PivotalDoc
         super(output)
       end
       def fields(feature)
-        [feature.id, feature.name, feature.story_type, feature.description, feature.requested_by, feature.owned_by]
+        [
+          feature.id, 
+          feature.name, 
+          feature.story_type, 
+          feature.description, 
+          feature.current_state, 
+          feature.requested_by, 
+          feature.owned_by
+        ]
       end
     end
   end

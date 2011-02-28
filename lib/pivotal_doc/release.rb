@@ -1,5 +1,7 @@
 module PivotalDoc
   class Release
+    include Work
+    
     attr_reader :project
     attr_reader :iteration
   
@@ -15,35 +17,15 @@ module PivotalDoc
     def name
       me.name if me.respond_to?(:name) 
     end
-  
-    def project_name
-      @project.name
-    end
-  
+    
     def latest_iteration
       PT::Iteration.done(@project, :offset=>'-1').first
     end
-    
-    def features
-      self.stories + self.bugs + self.chores
-    end     
-    
-    def stories
-      @stories ||= filter_stories
-    end
-  
-    def bugs
-      @bugs ||= filter_stories('bug')
-    end    
-  
-    def chores
-      @chores ||= filter_stories('chore')
-    end
-    
+        
     [:stories, :bugs, :chores].each do |m|
       define_method("#{m}_delivered") { self.send(m).size }
     end
-    
+        
     private
     def filter_stories(type='feature')
       self.iteration.stories.reject do |s|

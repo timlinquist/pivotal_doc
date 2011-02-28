@@ -1,6 +1,7 @@
 module PivotalDoc
   class Generator    
     class << self
+      #TODO: Clean this mutatant up
       def generate(format, settings={})
         config= PivotalDoc::Configuration.new(settings)
         config.authenticate!

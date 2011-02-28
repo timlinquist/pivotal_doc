@@ -1,5 +1,7 @@
 module PivotalDoc
   class Sprint
+    include Work
+    
     attr_reader :project
     attr_reader :iteration
 
@@ -12,6 +14,11 @@ module PivotalDoc
     
     def generator(format=:html)
       {:html=>PivotalDoc::Generators::Sprint}[format]
+    end
+    
+    private
+    def filter_stories(type='feature')
+      self.iteration.stories.reject {|s| s.story_type.downcase != type }
     end
   end
 end
