@@ -1,4 +1,9 @@
-Automated release notes for apps hosted on pivotaltracker.com.  Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest iteration for the specified project and displaying the completed features, bugs, and chores.
+Automated release notes for apps hosted on pivotaltracker.com.  Allows release notes to be generated for any project on pivotaltracker.com by retrieving the latest "DONE" iteration for the specified project and displaying the accepted features, bugs, and chores.
+
+UPDATE:
+A new option has been added to the settings for each project (see below.)  You can now generate sprint committments by setting: 'current'=>true.  This will pull all stories regardless of whether or not they've been accepted from the current iteration.  
+
+This is different than standard operating mode where only accepted stories from the last 'DONE' iteration are generated
 
 Usage:
 Either a file path (absolute) or a settings hash are supported for specifying your Pivotal Tracker credentials.
@@ -11,12 +16,13 @@ PivotalDoc::Generator.generate(format, 'absolute_path_to_my_file')
 PivotalDoc::Generator.generate(format, {
   'username'    => 'my_name',
   'password'    => 'my_password',
-  'token'       => 'my_token' #Not needed if you specify username/password,
+  'token'       => 'my_token' #Not needed if you specify username/password & vice-versa,
   'template_name'=>'fancy.html',
   'projects'    => {'github'=>
     {
       'id'        =>1, #This is the project_id from Pivotal Tracker
       'members'   =>['cyclone'],
+      'current'   =>true/false #New setting to generate sprint committments
     }
   }
 })
@@ -28,10 +34,8 @@ Note: It's recommended you define a story of type 'release' for each iteration t
 
 Planned:
  Custom templates
- Attachment support
- Comment support for stories
- Parsable descriptions for more granular descriptions on stories
- PDF ?
+ PDF
+ Attachment support?
 
 
 LASTLY, a big shout out to @jsmestad, author of the pivotal-tracker gem.  This gem provides a beautiful Active Record style DSL for interacting with Pivotal Tracker's API.

@@ -1,6 +1,8 @@
+#Auth against Pivotal Tracker api w/either u/p or token
 username: mc
 password: hitthenail
 token: some_funky_guid
+output_path: / #Direct pivotal_doc where to store generated files 
 projects:
   github:
    id: 1
@@ -8,9 +10,9 @@ projects:
      - [
          'hammer.time@rockyajaw.com'
        ]     
-  pivotal_doc:
-   id: 2
-   current: true
+  pivotal_doc: #project name
+   id: 2 #id in pivotal
+   current: true #generate sprint committments instead of release notes for project
    members: 
     - [
         'hammer.time@rockyajaw.com'
