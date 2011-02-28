@@ -52,7 +52,6 @@ Gem::Specification.new do |s|
     "lib/pivotal_doc/generators/csv.rb",
     "lib/pivotal_doc/generators/html.rb",
     "lib/pivotal_doc/generators/sprint.rb",
-    "lib/pivotal_doc/generators/text.rb",
     "lib/pivotal_doc/release.rb",
     "lib/pivotal_doc/sprint.rb",
     "lib/pivotal_doc/work.rb",
@@ -68,7 +67,6 @@ Gem::Specification.new do |s|
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
     "spec/lib/generators/sprint_spec.rb",
-    "spec/lib/generators/text_spec.rb",
     "spec/lib/release_spec.rb",
     "spec/lib/sprint_spec.rb",
     "spec/spec.opts",
@@ -78,7 +76,6 @@ Gem::Specification.new do |s|
     "templates/fancy.haml",
     "templates/output.csv",
     "templates/output.haml",
-    "templates/output.txt",
     "templates/sprint.haml"
   ]
   s.homepage = %q{http://github.com/timo3377/pivotal_doc}
@@ -93,7 +90,6 @@ Gem::Specification.new do |s|
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
     "spec/lib/generators/sprint_spec.rb",
-    "spec/lib/generators/text_spec.rb",
     "spec/lib/release_spec.rb",
     "spec/lib/sprint_spec.rb",
     "spec/spec_helper.rb",
