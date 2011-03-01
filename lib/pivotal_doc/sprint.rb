@@ -49,13 +49,18 @@ module PivotalDoc
     end
         
     [:stories, :bugs, :chores].each do |m|
-      define_method("#{m}_delivered") { self.send(m).size }
+      define_method("accepted_#{m}") do
+        self.send(m).reject{|s| s.current_state.downcase != 'accepted' }
+      end
+      define_method("#{m}_delivered") do
+        self.send("accepted_#{m}".to_sym).size 
+      end
     end
         
     private
     def filter_stories(type='feature')
       self.iteration.stories.reject do |s|
-        s.story_type.downcase != type || s.current_state.downcase != 'accepted'
+        s.story_type.downcase != type 
       end
     end
   end

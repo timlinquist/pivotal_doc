@@ -3,7 +3,7 @@
   = "This sprint began on #{sprint.iteration.start.fancy_format} and was completed on #{sprint.iteration.finish.fancy_format}.  It includes #{sprint.stories_delivered} new stories, #{sprint.bugs_delivered} bug fixes, and #{sprint.chores_delivered} miscellaneous chores."
 #stories
   %h3 Accepted Stories
-  - sprint.stories.each do |story|
+  - sprint.accepted_stories.each do |story|
     .item
       %h4= "Story ##{story.id} - #{story.name}"
       .item_info
@@ -12,7 +12,7 @@
         %p= "Description: #{story.description}"
 #bugs
   %h3 Bug Fixes
-  - sprint.bugs.each do |bug|
+  - sprint.accepted_bugs.each do |bug|
     .item
       %h4= "Bug ##{bug.id} - #{bug.name}"
       .item_info
@@ -21,7 +21,7 @@
         %p= "Description: #{bug.description}" 
 #chores    
   %h3 Miscellaneous Chores
-  - sprint.chores.each do |chore|
+  - sprint.accepted_chores.each do |chore|
     .item
       %h4= "Chore ##{chore.id} - #{chore.name}"
       .item_info

@@ -70,20 +70,20 @@ describe PivotalDoc::Sprint do
       describe "finished work" do
         [:stories, :chores, :bugs].each do |m|
           it "should know the #{m} delivered in this release" do
-            @sprint.send("#{m}_delivered").should eql(@sprint.send(m).size)
+            @sprint.send("#{m}_delivered").should eql(@sprint.send("accepted_#{m}").size)
           end
         end
         
         it "should only get the \"delivered\" stories" do
-          @sprint.stories.each{|s| s.current_state.downcase.should eql('accepted')}
+          @sprint.accepted_stories.each{|s| s.current_state.downcase.should eql('accepted')}
         end
 
         it "should only get the \"delivered\" bugs" do
-          @sprint.bugs.each{|b| b.current_state.downcase.should eql('accepted')}
+          @sprint.accepted_bugs.each{|b| b.current_state.downcase.should eql('accepted')}
         end
 
         it "should only get the \"accepted\" chores" do
-          @sprint.chores.each{|c| c.current_state.downcase.should eql('accepted')}
+          @sprint.accepted_chores.each{|c| c.current_state.downcase.should eql('accepted')}
         end
       end      
     end
