@@ -21,8 +21,9 @@
   %body
     #doc 
       #info
-        - if sprint.current?
-          = render('./sprint.haml', {:sprint=>sprint})
-        - else
-          = render('./release.haml', {:sprint=>sprint})
+      - path= PivotalDoc::Generators::Base::TEMPLATE_PATH
+      - if sprint.current?
+        %p= Haml::Engine.new(File.read(path + '/sprint.haml')).render(Object.new, {:sprint=>sprint})
+      - else
+        %p= Haml::Engine.new(File.read(path + '/release.haml')).render(Object.new, {:sprint=>sprint})
         

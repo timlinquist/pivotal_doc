@@ -1,6 +1,8 @@
 module PivotalDoc
   module Generators
     class Base
+      TEMPLATE_PATH= "#{PROJECT_ROOT}/templates"
+      
       def initialize(sprint, options={})
         @sprint= sprint
         @options= options
@@ -40,7 +42,7 @@ module PivotalDoc
       end
       
       def template
-        path= File.join(PROJECT_ROOT, 'templates', template_name)
+        path= File.join(TEMPLATE_PATH, template_name)
         raise TemplateNonExistent.new(template_name) unless File.exists?(path)
         @template ||= File.read(path)
       end
