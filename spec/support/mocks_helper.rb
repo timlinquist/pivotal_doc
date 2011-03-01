@@ -5,12 +5,13 @@ module MocksHelper
   end
 
   private  
-  def release
-    release= PivotalDoc::Release.new(project, iteration)
-    release.stub!(:stories).and_return(PTApiHelpers::mock_stories)
-    release.stub!(:bugs).and_return(PTApiHelpers::mock_bugs)
-    release.stub!(:chores).and_return(PTApiHelpers::mock_chores)
-    release
+  def sprint
+    PT::Iteration.stub!(:current).and_return(iteration)
+    sprint= PivotalDoc::Sprint.new(project, iteration)
+    sprint.stub!(:stories).and_return(PTApiHelpers::mock_stories)
+    sprint.stub!(:bugs).and_return(PTApiHelpers::mock_bugs)
+    sprint.stub!(:chores).and_return(PTApiHelpers::mock_chores)
+    sprint
   end
   
   def project
@@ -23,7 +24,7 @@ module MocksHelper
   
   def mocks
     @@mocks= {
-      :release=>release,
+      :sprint=>sprint,
       :project=>project,
       :iteration=>iteration
     }

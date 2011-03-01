@@ -6,7 +6,7 @@ module PivotalDoc
       end
       def output_ext; '.html' end
       def render_doc
-        html= Haml::Engine.new(template).render(Object.new, {:release=>@release})
+        html= Haml::Engine.new(template).render(Object.new, {:sprint=>@sprint})
         super(html)
       end
     end

@@ -1,8 +1,8 @@
 module PivotalDoc
   module Generators
     class Base
-      def initialize(release, options={})
-        @release= release
+      def initialize(sprint, options={})
+        @sprint= sprint
         @options= options
       end
       
@@ -13,7 +13,7 @@ module PivotalDoc
       def output_file
         name= @options['output_file']
         unless name
-          name=@release.name || @release.project_name || self.object_id.to_s
+          name=@sprint.release_name || @sprint.project_name || self.object_id.to_s
           name.gsub!(/\//, '') and name.gsub!(/\s/,'')
         end
         File.join(output_path, (name + output_ext))  

@@ -19,35 +19,10 @@
         div.item {padding-left: .4em}
         div.item_info {padding-left: .4em}
   %body
-    #release_doc
-      #release_info
-        %h2= "Announcing the \"#{release.name}\" release for the #{release.project_name} project"
-        %p
-          = "This sprint began on #{release.iteration.start.fancy_format} and was completed on #{release.iteration.finish.fancy_format}.  It includes #{release.stories_delivered} new stories, #{release.bugs_delivered} bug fixes, and #{release.chores_delivered} miscellaneous chores."
-      #stories
-        %h3 Accepted Stories
-        - release.stories.each do |story|
-          .item
-            %h4= "Story ##{story.id} - #{story.name}"
-            .item_info
-              %p= "Requestor: #{story.requested_by}" 
-              %p= "Completed By: #{story.owned_by}"
-              %p= "Description: #{story.description}"
-      #bugs
-        %h3 Bug Fixes
-        - release.bugs.each do |bug|
-          .item
-            %h4= "Bug ##{bug.id} - #{bug.name}"
-            .item_info
-              %p= "Requestor: #{bug.requested_by}" 
-              %p= "Completed By: #{bug.owned_by}"
-              %p= "Description: #{bug.description}" 
-      #chores    
-        %h3 Miscellaneous Chores
-        - release.chores.each do |chore|
-          .item
-            %h4= "Chore ##{chore.id} - #{chore.name}"
-            .item_info
-              %p= "Requestor: #{chore.requested_by}" 
-              %p= "Completed By: #{chore.owned_by}"
-              %p= "Description: #{chore.description}" 
+    #doc 
+      #info
+        - if sprint.current?
+          = render('./sprint.haml', {:sprint=>sprint})
+        - else
+          = render('./release.haml', {:sprint=>sprint})
+        

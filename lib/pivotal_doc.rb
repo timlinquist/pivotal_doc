@@ -16,13 +16,10 @@ require File.join('pivotal_doc/exceptions')
 require File.join('pivotal_doc/generator')
 
 #Core classes
-require File.join('pivotal_doc/work')
-require File.join('pivotal_doc/release')
 require File.join('pivotal_doc/sprint')
 
 #Generators
 require File.join('pivotal_doc/generators', 'base')
 require File.join('pivotal_doc/generators', 'html')
 require File.join('pivotal_doc/generators', 'csv')
-require File.join('pivotal_doc/generators', 'sprint')
 

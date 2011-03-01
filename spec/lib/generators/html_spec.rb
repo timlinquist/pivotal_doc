@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe PivotalDoc::Generators::HTML do
   before(:each) do
-    @release= mocks_helper(:release)
-    @html= PivotalDoc::Generators::HTML.new(@release)
+    @sprint= mocks_helper(:sprint)
+    @html= PivotalDoc::Generators::HTML.new(@sprint)
     @engine= Haml::Engine.new('')
   end
   
@@ -24,7 +24,7 @@ describe PivotalDoc::Generators::HTML do
   
   it "should use the template_name if specified" do
     options= {'template_name'=>'fancy.html'}
-    html= PivotalDoc::Generators::HTML.new(@release, options)
+    html= PivotalDoc::Generators::HTML.new(@sprint, options)
     html.template_name.should eql(options['template_name'])
   end
   

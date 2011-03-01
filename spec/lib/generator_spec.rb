@@ -13,7 +13,7 @@ describe PivotalDoc::Generator do
   
   describe "Configuring" do
     before(:each) do
-      PivotalDoc::Generator.stub!(:collect_releases!).and_return([])
+      PivotalDoc::Generator.stub!(:collect_sprints!).and_return([])
     end
     it "should create a config object from the settings" do
       settings= {}
@@ -28,48 +28,28 @@ describe PivotalDoc::Generator do
     end    
   end
   
-  describe "releases" do
+  describe "sprints" do
     before(:each) do
-      @release= mocks_helper(:release)
-      PivotalDoc::Release.stub!(:new).and_return(@release)
+      @sprint= mocks_helper(:sprint)
+      PivotalDoc::Sprint.stub!(:new).and_return(@sprint)
     end
     
-    it "should create a release for each project" do
+    it "should create a sprint for each project" do
       PT::Iteration.stub!(:current).and_return(mocks_helper(:iteration))
       @config.projects.each do |name, settings| 
-        PT::Project.should_receive(:find).with(settings['id'].to_i).and_return(@release.project) 
+        PT::Project.should_receive(:find).with(settings['id'].to_i).and_return(@sprint.project) 
       end
-      releases= PivotalDoc::Generator.collect_releases!(@config)
-      releases.size.should eql(@config.projects.size)
-    end
-    
-    describe "current" do
-      it "create a current iteration for the release if current is set for the project" do
-        PT::Project.stub!(:find).and_return(@release.project)      
-        iteration= mocks_helper(:iteration)
-        PT::Iteration.should_receive(:current).exactly(:once).and_return(iteration)
-        PivotalDoc::Generator.collect_releases!(@config)
-      end
-      
-      it "create a sprint for the current iteration instead of a release" do
-        PT::Project.stub!(:find).and_return(@release.project)      
-        iteration= mocks_helper(:iteration)
-        PT::Iteration.stub!(:current).and_return(iteration)
-        releases= PivotalDoc::Generator.collect_releases!(@config)        
-        releases.last.should be_an_instance_of(PivotalDoc::Sprint)
-      end
+      sprints= PivotalDoc::Generator.collect_sprints!(@config)
+      sprints.size.should eql(@config.projects.size)
     end
   end
 
   describe "generation" do
     before(:each) do
       @config.stub!(:authenticate!).and_return(true)
-      @release = mocks_helper(:release)
-      PT::Iteration.stub!(:current).and_return(mocks_helper(:iteration))
-      @sprint =  PivotalDoc::Sprint.new(@release.project)
-      PT::Project.stub!(:find).and_return(@release.project)
+      @sprint = mocks_helper(:sprint)
+      PT::Project.stub!(:find).and_return(@sprint.project)
       PivotalDoc::Sprint.stub!(:new).and_return(@sprint)
-      PivotalDoc::Release.stub!(:new).and_return(@release)
     end
 
     describe "Formattting" do
@@ -78,15 +58,9 @@ describe PivotalDoc::Generator do
         @html_gen= PivotalDoc::Generators::HTML.new({})
         @html_gen.stub!(:render_doc)
       end
-      it "use the generators format if there is one" do
-        sprint_generator= mock('PivotalDoc::Generators::Sprint')
-        @sprint.generator(:html).should_receive(:new).exactly(:once).with(@sprint, @config.settings).and_return(sprint_generator)
-        sprint_generator.should_receive(:render_doc)
-        PivotalDoc::Generator.generate(:html)        
-      end
+
       it "should render the release with the specified format and custom settings" do
-        @sprint.generator(:html).stub!(:new).and_return(@html_gen)
-        PivotalDoc::Generators::HTML.should_receive(:new).with(@release, @config.settings).and_return(@html_gen)
+        PivotalDoc::Generators::HTML.should_receive(:new).with(@sprint, @config.settings).and_return(@html_gen)
         PivotalDoc::Generator.generate(:html)
       end
       it "should raise an error if the specified format isn't supported" do

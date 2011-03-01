@@ -1,11 +1,14 @@
-%h2= "This sprint begins on #{sprint.iteration.start.fancy_format} and ends on #{sprint.iteration.finish.fancy_format}."
+%h2= "Announcing the \"#{sprint.release_name}\" release for the #{sprint.project_name} project"
+%p
+  = "This sprint began on #{sprint.iteration.start.fancy_format} and was completed on #{sprint.iteration.finish.fancy_format}.  It includes #{sprint.stories_delivered} new stories, #{sprint.bugs_delivered} bug fixes, and #{sprint.chores_delivered} miscellaneous chores."
 #stories
-  %h3 Proposed Stories
+  %h3 Accepted Stories
   - sprint.stories.each do |story|
     .item
       %h4= "Story ##{story.id} - #{story.name}"
       .item_info
         %p= "Requestor: #{story.requested_by}" 
+        %p= "Completed By: #{story.owned_by}"
         %p= "Description: #{story.description}"
 #bugs
   %h3 Bug Fixes
@@ -14,6 +17,7 @@
       %h4= "Bug ##{bug.id} - #{bug.name}"
       .item_info
         %p= "Requestor: #{bug.requested_by}" 
+        %p= "Completed By: #{bug.owned_by}"
         %p= "Description: #{bug.description}" 
 #chores    
   %h3 Miscellaneous Chores
@@ -22,4 +26,5 @@
       %h4= "Chore ##{chore.id} - #{chore.name}"
       .item_info
         %p= "Requestor: #{chore.requested_by}" 
+        %p= "Completed By: #{chore.owned_by}"
         %p= "Description: #{chore.description}" 

@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe PivotalDoc::Generators::CSV do
   before(:each) do
-    @release= mocks_helper(:release)
-    @csv= PivotalDoc::Generators::CSV.new(@release)
+    @sprint= mocks_helper(:sprint)
+    @csv= PivotalDoc::Generators::CSV.new(@sprint)
   end
   
   after(:each) do
@@ -15,7 +15,7 @@ describe PivotalDoc::Generators::CSV do
       @csv.render_doc
       output= File.read(@csv.output_file)
       output.should =~ /#{PivotalDoc::Generators::CSV::COLUMNS.join(',')}/
-      @release.features.each{|f| output =~ @csv.fields(f) }
+      @sprint.features.each{|f| output =~ @csv.fields(f) }
     end
 
     it "should read the file contents" do
@@ -27,7 +27,7 @@ describe PivotalDoc::Generators::CSV do
     end 
     
     it "include each field" do
-      fields= @csv.fields(@release.features.first)
+      fields= @csv.fields(@sprint.features.first)
       fields.should be_an_instance_of(Array)
       fields.should have(PivotalDoc::Generators::CSV::COLUMNS.size).items
     end   

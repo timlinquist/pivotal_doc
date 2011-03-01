@@ -11,7 +11,7 @@ module PivotalDoc
       def render_doc
         output = FasterCSV.generate do |csv|
           csv << COLUMNS.clone 
-          @release.features.each {|f| csv << fields(f) }              
+          @sprint.features.each {|f| csv << fields(f) }              
         end
         super(output)
       end

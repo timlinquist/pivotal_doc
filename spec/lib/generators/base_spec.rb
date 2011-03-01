@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe PivotalDoc::Generators::Base do
   before(:each) do
-    @release= mocks_helper(:release)
-    @base= PivotalDoc::Generators::Base.new(@release)
+    @sprint= mocks_helper(:sprint)
+    @base= PivotalDoc::Generators::Base.new(@sprint)
   end
   it "should raise an exception if the template doesn't exist" do
     @base.stub!(:template_name).and_return('non-existent.txt')
@@ -21,24 +21,24 @@ describe PivotalDoc::Generators::Base do
 
     describe "options" do
       it "should be a fully qualified file" do
-        base= PivotalDoc::Generators::Base.new(@release, {:output_file=>'my_file'})
+        base= PivotalDoc::Generators::Base.new(@sprint, {:output_file=>'my_file'})
         f= File.open(base.output_file, 'w')
         f.should be_an_instance_of(File)
         File.delete(f.path)
       end
 
       it "should use the output_file if present" do
-        base= PivotalDoc::Generators::Base.new(@release, {'output_file'=>'my_file'})
+        base= PivotalDoc::Generators::Base.new(@sprint, {'output_file'=>'my_file'})
         base.output_file.should =~ /\/my_file/
       end
 
       it "should default the output_file to the release's name (unique filename for multiple projects)" do
-        base= PivotalDoc::Generators::Base.new(@release)
-        base.output_file.should =~ /\/#{@release.name}/
+        base= PivotalDoc::Generators::Base.new(@sprint)
+        base.output_file.should =~ /\/#{@sprint.release_name}/
       end
 
       it "should use the output_path if present" do
-        base= PivotalDoc::Generators::Base.new(@release, {'output_path'=>'my_path'})
+        base= PivotalDoc::Generators::Base.new(@sprint, {'output_path'=>'my_path'})
         base.output_path.should =~ /^my_path/
       end
 
