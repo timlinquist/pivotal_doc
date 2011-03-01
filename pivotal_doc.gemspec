@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{pivotal_doc}
-  s.version = "1.4.0"
+  s.version = "1.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Linquist"]
@@ -51,8 +51,6 @@ Gem::Specification.new do |s|
     "lib/pivotal_doc/generators/base.rb",
     "lib/pivotal_doc/generators/csv.rb",
     "lib/pivotal_doc/generators/html.rb",
-    "lib/pivotal_doc/generators/sprint.rb",
-    "lib/pivotal_doc/release.rb",
     "lib/pivotal_doc/sprint.rb",
     "lib/pivotal_doc/work.rb",
     "pivotal_doc.gemspec",
@@ -66,8 +64,6 @@ Gem::Specification.new do |s|
     "spec/lib/generators/base_spec.rb",
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
-    "spec/lib/generators/sprint_spec.rb",
-    "spec/lib/release_spec.rb",
     "spec/lib/sprint_spec.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
@@ -76,6 +72,7 @@ Gem::Specification.new do |s|
     "templates/fancy.haml",
     "templates/output.csv",
     "templates/output.haml",
+    "templates/release.haml",
     "templates/sprint.haml"
   ]
   s.homepage = %q{http://github.com/timo3377/pivotal_doc}
@@ -89,8 +86,6 @@ Gem::Specification.new do |s|
     "spec/lib/generators/base_spec.rb",
     "spec/lib/generators/csv_spec.rb",
     "spec/lib/generators/html_spec.rb",
-    "spec/lib/generators/sprint_spec.rb",
-    "spec/lib/release_spec.rb",
     "spec/lib/sprint_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/mocks_helper.rb",
